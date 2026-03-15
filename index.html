@@ -361,6 +361,21 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   color:white;
   cursor:pointer;
 }
+  #puzzleBoard{
+  width:300px;
+  height:300px;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-template-rows:repeat(6,1fr);
+  gap:2px;
+  margin:20px auto;
+}
+
+.piece{
+  background-image:url("dada.jpeg");
+  background-size:300px 300px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -378,6 +393,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 <button onclick="showSection('daily')">📅 Mesajul zilei</button>
 <button onclick="showSection('balloons')">🎈 Capsula timpului</button>
 <button onclick="showSection('music')">🎶 Muzica noastră</button>
+<button onclick="showSection('puzzle')">🧩 Puzzle</button>
 </div>
 </div>
 
@@ -485,6 +501,14 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   <button class="back" onclick="goBack()">⬅ Back</button>
 
 </div>
+
+  <div id="puzzle" class="section">
+  <div class="glass-box">
+    <h2>🧩 Puzzle 6x6</h2>
+    <div id="puzzleBoard"></div>
+  </div>
+  <button class="back" onclick="goBack()">⬅ Back</button>
+</div>
   
 <script>
 
@@ -508,6 +532,7 @@ function showSection(id){
 if(id==="daily") showDailyMessage();
 if(id==="balloons") createBalloons();
 if(id==="music") startMusicSection();
+if(id==="puzzle") loadPuzzle();
 }
 
 function goBack(){
@@ -1001,6 +1026,54 @@ function createMusicNote(){
 }
 
 setInterval(createMusicNote,800);
+
+  let puzzlePieces = [];
+let firstSelected = null;
+
+function loadPuzzle(){
+  const board = document.getElementById("puzzleBoard");
+  board.innerHTML = "";
+  puzzlePieces = [];
+
+  for(let row=0; row<6; row++){
+    for(let col=0; col<6; col++){
+
+      const piece = document.createElement("div");
+      piece.className = "piece";
+
+      piece.style.backgroundPosition =
+        `-${col*50}px -${row*50}px`;
+
+      piece.dataset.index = row*6 + col;
+
+      piece.onclick = () => selectPiece(piece);
+
+      puzzlePieces.push(piece);
+    }
+  }
+
+  // amestecăm
+  puzzlePieces.sort(() => Math.random() - 0.5);
+
+  puzzlePieces.forEach(p => board.appendChild(p));
+}
+
+function selectPiece(piece){
+
+  if(!firstSelected){
+    firstSelected = piece;
+    piece.style.outline = "3px solid yellow";
+  } else {
+
+    // schimbăm între ele
+    const temp = firstSelected.style.backgroundPosition;
+    firstSelected.style.backgroundPosition = piece.style.backgroundPosition;
+    piece.style.backgroundPosition = temp;
+
+    firstSelected.style.outline = "";
+    firstSelected = null;
+  }
+}
   
 </script>
 </body>
