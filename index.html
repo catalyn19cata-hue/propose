@@ -460,21 +460,22 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
 function showSection(id){
 
-  // ascundem meniul
+  // oprim inimile când intrăm la baloane
+  if(id === "balloons"){
+    clearInterval(heartsInterval);
+  }
+
   document.getElementById("menu").style.display="none";
 
-  // ascundem toate secțiunile
   document.querySelectorAll(".section").forEach(s=>{
     s.classList.remove("active");
   });
 
-  // arătăm doar secțiunea selectată
   const section=document.getElementById(id);
   if(section){
     section.classList.add("active");
   }
 
-  // funcții speciale
   if(id==="quiz") loadQuiz();
   if(id==="daily") showDailyMessage();
   if(id==="balloons") createBalloons();
