@@ -1087,7 +1087,8 @@ function loadPuzzle(){
   board.innerHTML="";
 
   const size = 3;
-  const boardSize = board.clientWidth;
+const boardSize = board.clientWidth;
+const pieceSize = boardSize / size;
 
   puzzle.forEach((value,index)=>{
 
