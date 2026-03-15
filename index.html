@@ -376,7 +376,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 <div class="glass-box">
 <h2>Cât de mult mă iubești? 💘</h2>
 
-<div class="love-container" onclick="setLove(event)">
+<div class="love-container" id="loveContainer">
 <div class="love-fill" id="loveFill"></div>
 </div>
 
@@ -723,7 +723,62 @@ function backToBalloons(){
   document.getElementById("photoView").style.display="none";
   document.getElementById("balloonContainer").style.display="block";
 }
+const loveContainer = document.getElementById("loveContainer");
 
+let isDragging = false;
+
+loveContainer.addEventListener("touchstart", e=>{
+  isDragging = true;
+  updateLove(e.touches[0]);
+});
+
+loveContainer.addEventListener("touchmove", e=>{
+  if(isDragging){
+    updateLove(e.touches[0]);
+  }
+});
+
+loveContainer.addEventListener("touchend", ()=>{
+  isDragging = false;
+});
+
+function updateLove(touch){
+
+  const rect = loveContainer.getBoundingClientRect();
+
+  let percent = 100 - ((touch.clientY - rect.top) / rect.height) * 100;
+
+  percent = Math.round(percent / 10) * 10;
+
+  if(percent < 0) percent = 0;
+  if(percent > 100) percent = 100;
+
+  document.getElementById("loveFill").style.height = percent + "%";
+
+  const message=document.getElementById("loveMessage");
+
+  const messages={
+    0:"😢 Serios?",
+    10:"🙂 Începem timid!",
+    20:"😄 Crește!",
+    30:"😊 Aproape!",
+    40:"💞 Simt ceva!",
+    50:"🔥 Jumătate!",
+    60:"😍 Devine serios!",
+    70:"💘 Aproape!",
+    80:"🥰 Foarte aproape!",
+    90:"💖 WOW!",
+    100:"😘 MAXIM!"
+  };
+
+  message.innerText = messages[percent] || "";
+
+  if(percent === 100){
+    showPopup("😘");
+    message.innerText = "Atât de mult te iubesc și eu 💖";
+  }
+
+}
 </script>
 
 </body>
