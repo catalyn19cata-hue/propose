@@ -824,8 +824,8 @@ let centerY = Math.random() * (window.innerHeight - 200);
 function move(){
   angle += 0.015; // viteza rotației (mai mic = mai lent)
 
-  x = centerX + Math.cos(angle) * radius;
-  y = centerY + Math.sin(angle) * radius;
+let x = centerX + Math.cos(angle) * radius;
+let y = centerY + Math.sin(angle) * radius;
 
   b.style.left = x + "px";
   b.style.top = y + "px";
