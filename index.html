@@ -358,14 +358,12 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   cursor:pointer;
 }
 #puzzleBoard{
-  width:320px;
+  width:300px;
   max-width:90vw;
   aspect-ratio:1/1;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:3px;
-  margin:20px auto;
-  transform: translateX(-8px);
 }
 
 .piece{
@@ -1068,28 +1066,26 @@ function loadPuzzle(){
   board.innerHTML = "";
   puzzlePieces = [];
 
-  const size = 4; // 🔥 4x4
+  cconst size = 3;
+const boardSize = 300;
 
-  for(let row=0; row<size; row++){
-    for(let col=0; col<size; col++){
+for(let row=0; row<size; row++){
+  for(let col=0; col<size; col++){
 
-      const piece = document.createElement("div");
-      piece.className = "piece";
+    const piece = document.createElement("div");
+    piece.className = "piece";
 
-      piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
-      piece.style.backgroundSize = "400px 400px"; 
-      // 🔥 pentru 4x4 trebuie imaginea împărțită la 4
+    piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
+    piece.style.backgroundSize = boardSize + "px " + boardSize + "px";
 
-      piece.style.backgroundPosition =
-        `-${col*100}px -${row*100}px`;
+    piece.style.backgroundPosition =
+      `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
 
-      piece.dataset.index = row*4 + col; // 🔥 FIX 4
+    piece.onclick = () => selectPiece(piece);
 
-      piece.onclick = () => selectPiece(piece);
-
-      puzzlePieces.push(piece);
-    }
+    board.appendChild(piece);
   }
+}}
 
   puzzlePieces.sort(() => Math.random() - 0.5);
 
