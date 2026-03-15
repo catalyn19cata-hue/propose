@@ -603,9 +603,14 @@ sec+" secunde";
 /* INIMI */
 function createHeart(){
 
-  // 🔥 dacă suntem în capsula timpului, NU creăm inimi
-  if(document.getElementById("balloons") &&
-     document.getElementById("balloons").classList.contains("active")){
+  // 🔥 NU inimile în:
+  // - baloane
+  // - puzzle
+
+  if(
+    document.getElementById("balloons")?.classList.contains("active") ||
+    document.getElementById("puzzle")?.classList.contains("active")
+  ){
     return;
   }
 
