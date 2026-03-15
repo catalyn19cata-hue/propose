@@ -452,7 +452,34 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   <button class="back" onclick="goBack()">⬅ Back</button>
 
 </div>
+<div id="music" class="section">
 
+  <div class="glass-box">
+
+    <h2>🎶 Muzica noastră</h2>
+
+    <div id="slideshow">
+      <img id="slideImage"
+           src=""
+           style="width:100%; border-radius:20px; transition:opacity 0.8s;">
+      
+      <div id="slideMessage"
+           style="margin-top:10px; font-family:'Dancing Script', cursive; font-size:20px;">
+      </div>
+    </div>
+
+    <button id="playPauseBtn" onclick="toggleMusic()" style="margin-top:15px;">
+      ⏸ Pauză
+    </button>
+
+    <audio id="bgMusic" src="muzica.mp3"></audio>
+
+  </div>
+
+  <button class="back" onclick="goBack()">⬅ Back</button>
+
+</div>
+  
 <script>
 
 /* NAVIGARE */
