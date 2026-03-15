@@ -884,7 +884,19 @@ function toggleMusic(){
     btn.innerText="▶ Pornește";
   }
 }
-  
+  function createNote(){
+  const note=document.createElement("div");
+  note.innerText="🎵";
+  note.style.position="absolute";
+  note.style.left=Math.random()*100+"%";
+  note.style.bottom="0";
+  note.style.fontSize="22px";
+  note.style.animation="rise 5s linear forwards";
+
+  document.getElementById("musicArea").appendChild(note);
+
+  setTimeout(()=>note.remove(),5000);
+}
 </script>
 <audio id="bgMusic" src="ordinary.mp3" loop></audio>
 </body>
