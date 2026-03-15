@@ -1080,6 +1080,69 @@ function loadPuzzle(){
   drawPuzzle();
 
 }
+  function drawPuzzle(){
+
+  const board = document.getElementById("puzzleBoard");
+  board.innerHTML="";
+
+  const size = 3;
+  const boardSize = board.clientWidth;
+
+  puzzle.forEach((value,index)=>{
+
+    const piece = document.createElement("div");
+
+    if(value === 8){
+      piece.style.background="transparent";
+    } else {
+
+      piece.className="piece";
+
+      piece.style.backgroundImage =
+      "url('" + puzzleImages[0] + "')";
+
+      piece.style.backgroundSize =
+      boardSize + "px " + boardSize + "px";
+
+      const row = Math.floor(value/size);
+      const col = value%size;
+
+      piece.style.backgroundPosition =
+      `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
+    }
+
+    piece.onclick = ()=>movePiece(index);
+
+    board.appendChild(piece);
+
+  });
+
+}
+  function movePiece(index){
+
+  const size = 3;
+
+  const row = Math.floor(index/size);
+  const col = index%size;
+
+  const emptyRow = Math.floor(emptyIndex/size);
+  const emptyCol = emptyIndex%size;
+
+  const distance =
+    Math.abs(row-emptyRow) +
+    Math.abs(col-emptyCol);
+
+  if(distance === 1){
+
+    [puzzle[index],puzzle[emptyIndex]] =
+    [puzzle[emptyIndex],puzzle[index]];
+
+    emptyIndex = index;
+
+    drawPuzzle();
+  }
+
+}
 function selectPiece(piece){
 
   if(!firstSelected){
