@@ -531,13 +531,21 @@ sec+" secunde";
 
 /* INIMI */
 function createHeart(){
-const heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerText="❤";
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(3+Math.random()*3)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
+
+  // 🔥 dacă suntem în capsula timpului, NU creăm inimi
+  if(document.getElementById("balloons") &&
+     document.getElementById("balloons").classList.contains("active")){
+    return;
+  }
+
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
 }
 let heartsInterval = setInterval(createHeart,800);
 
