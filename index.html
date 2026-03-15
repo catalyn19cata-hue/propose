@@ -1045,8 +1045,8 @@ function createMusicNote(){
 
 setInterval(createMusicNote,800);
 
-  let puzzlePieces = [];
-let firstSelected = null;
+ let puzzle = [];
+let emptyIndex = 8;
 
   const puzzleImages = [
   "dada.jpeg",
@@ -1063,34 +1063,23 @@ function loadPuzzle(){
 
   const board = document.getElementById("puzzleBoard");
   board.innerHTML = "";
-  puzzlePieces = [];
 
   const size = 3;
-  const boardSize = 300;
 
-  for(let row=0; row<size; row++){
-    for(let col=0; col<size; col++){
+  puzzle = [];
 
-      const piece = document.createElement("div");
-      piece.className = "piece";
-
-      piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
-      piece.style.backgroundSize = boardSize + "px " + boardSize + "px";
-
-      piece.style.backgroundPosition =
-        `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
-
-      piece.onclick = () => selectPiece(piece);
-
-      puzzlePieces.push(piece);
-    }
+  for(let i=0;i<9;i++){
+    puzzle.push(i);
   }
 
-  puzzlePieces.sort(() => Math.random() - 0.5);
+  // amestecăm piesele
+  puzzle.sort(()=>Math.random()-0.5);
 
-  puzzlePieces.forEach(p => board.appendChild(p));
+  emptyIndex = puzzle.indexOf(8);
+
+  drawPuzzle();
+
 }
-
 function selectPiece(piece){
 
   if(!firstSelected){
