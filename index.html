@@ -1031,20 +1031,27 @@ setInterval(createMusicNote,800);
 let firstSelected = null;
 
 function loadPuzzle(){
+
   const board = document.getElementById("puzzleBoard");
   board.innerHTML = "";
   puzzlePieces = [];
 
- for(let row=0; row<4; row++){
-  for(let col=0; col<4; col++){
+  const size = 4; // 🔥 4x4
+
+  for(let row=0; row<size; row++){
+    for(let col=0; col<size; col++){
 
       const piece = document.createElement("div");
       piece.className = "piece";
 
-      piece.style.backgroundPosition =
-        `-${col*50}px -${row*50}px`;
+      piece.style.backgroundImage = "url('dada.jpeg')";
+      piece.style.backgroundSize = "400px 400px"; 
+      // 🔥 pentru 4x4 trebuie imaginea împărțită la 4
 
-      piece.dataset.index = row*6 + col;
+      piece.style.backgroundPosition =
+        `-${col*100}px -${row*100}px`;
+
+      piece.dataset.index = row*4 + col; // 🔥 FIX 4
 
       piece.onclick = () => selectPiece(piece);
 
@@ -1052,7 +1059,6 @@ function loadPuzzle(){
     }
   }
 
-  // amestecăm
   puzzlePieces.sort(() => Math.random() - 0.5);
 
   puzzlePieces.forEach(p => board.appendChild(p));
