@@ -331,6 +331,36 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
     max-width:800px;
   }
 }
+  #slideshow{
+  width:95%;
+  max-width:500px;
+  margin:20px auto;
+  text-align:center;
+  position:relative;
+}
+
+#slideImage{
+  width:100%;
+  border-radius:20px;
+  transition:opacity 1.5s ease;
+  opacity:1;
+}
+
+#slideMessage{
+  margin-top:10px;
+  font-size:18px;
+  font-family:'Dancing Script', cursive;
+}
+
+#musicBtn{
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:green;
+  color:white;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -806,7 +836,30 @@ function updateLove(touch){
   }
 
 }
+const slides = [
+  {img:"img1.jpg", text:"Mesaj pentru poza 1 💖"},
+  {img:"img2.jpg", text:"Mesaj pentru poza 2 ✨"},
+  {img:"img3.jpg", text:"Mesaj pentru poza 3 🥰"}
+];
 
+let currentSlide = 0;
+
+function showSlide(){
+  const image = document.getElementById("slideImage");
+  const message = document.getElementById("slideMessage");
+
+  image.style.opacity = 0;
+
+  setTimeout(()=>{
+    image.src = slides[currentSlide].img;
+    message.innerText = slides[currentSlide].text;
+    image.style.opacity = 1;
+  },1000);
+
+  currentSlide = (currentSlide + 1) % slides.length;
+}
+
+setInterval(showSlide,7000);
 </script>
 
 </body>
