@@ -407,9 +407,18 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 /* NAVIGARE */
 
 function showSection(id){
+
+  // ascunde meniul
   document.getElementById("menu").style.display="none";
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+
+  // ascunde toate secțiunile
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  // arată secțiunea selectată
+  const section = document.getElementById(id);
+  section.classList.add("active");
 
   if(id==="quiz") loadQuiz();
   if(id==="daily") showDailyMessage();
