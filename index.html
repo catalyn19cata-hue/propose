@@ -872,16 +872,17 @@ function showSlide(){
 }
 
 setInterval(showSlide,7000);
+let notesInterval;
+
 function toggleMusic(){
   const music = document.getElementById("bgMusic");
-  const btn = document.getElementById("musicBtn");
 
   if(music.paused){
     music.play();
-    btn.innerText="⏸ Pauză";
+    notesInterval = setInterval(createNote,700);
   } else {
     music.pause();
-    btn.innerText="▶ Pornește";
+    clearInterval(notesInterval);
   }
 }
   function createNote(){
