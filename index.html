@@ -473,8 +473,6 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 /* NAVIGARE */
 
 function showSection(id){
-
-if(id==="music") startMusicSection();
   
   clearInterval(heartsInterval);
 
@@ -489,9 +487,10 @@ if(id==="music") startMusicSection();
     section.classList.add("active");
   }
 
-  if(id==="quiz") loadQuiz();
-  if(id==="daily") showDailyMessage();
-  if(id==="balloons") createBalloons();
+ if(id==="quiz") loadQuiz();
+if(id==="daily") showDailyMessage();
+if(id==="balloons") createBalloons();
+if(id==="music") startMusicSection();
 }
 
 function goBack(){
