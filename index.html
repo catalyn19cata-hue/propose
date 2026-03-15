@@ -468,9 +468,15 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
       </div>
     </div>
 
-    <button id="playPauseBtn" onclick="toggleMusic()" style="margin-top:15px;">
-      ⏸ Pauză
-    </button>
+   <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+
+<button onclick="playMusic()">▶ Play</button>
+
+<button onclick="pauseMusic()">⏸ Pauză</button>
+
+<button onclick="stopMusic()">⏹ Stop</button>
+
+</div>
 
     <audio id="bgMusic" src="muzica.mpeg"></audio>
 
