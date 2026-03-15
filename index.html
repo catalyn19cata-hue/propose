@@ -506,6 +506,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   <div class="glass-box">
     <h2>🧩 Puzzle 4x4</h2>
     <div id="puzzleBoard"></div>
+    <div id="puzzleSelector"></div>
   </div>
   <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
@@ -532,7 +533,9 @@ function showSection(id){
 if(id==="daily") showDailyMessage();
 if(id==="balloons") createBalloons();
 if(id==="music") startMusicSection();
-if(id==="puzzle") loadPuzzle();
+if(id==="puzzle"){
+  loadPuzzle();
+  loadPuzzleSelector();
 }
 
 function goBack(){
@@ -1030,6 +1033,13 @@ setInterval(createMusicNote,800);
   let puzzlePieces = [];
 let firstSelected = null;
 
+  const puzzleImages = [
+  "dada.jpeg",
+  "poza2.jpeg",
+  "poza3.jpeg",
+  "poza4.jpeg"
+];
+  
 function loadPuzzle(){
 
   const board = document.getElementById("puzzleBoard");
@@ -1044,7 +1054,7 @@ function loadPuzzle(){
       const piece = document.createElement("div");
       piece.className = "piece";
 
-      piece.style.backgroundImage = "url('dada.jpeg')";
+      piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
       piece.style.backgroundSize = "400px 400px"; 
       // 🔥 pentru 4x4 trebuie imaginea împărțită la 4
 
@@ -1080,6 +1090,31 @@ function selectPiece(piece){
     firstSelected = null;
   }
 }
+
+function loadPuzzleSelector(){
+
+  const container = document.getElementById("puzzleSelector");
+  container.innerHTML = "";
+
+  puzzleImages.forEach(img =>{
+
+    const image = document.createElement("img");
+    image.src = img;
+    image.style.width = "100%";
+    image.style.marginBottom = "10px";
+    image.style.borderRadius = "10px";
+    image.style.cursor = "pointer";
+
+    image.onclick = () =>{
+      // schimbăm imaginea din puzzle
+      document.querySelectorAll(".piece").forEach(piece=>{
+        piece.style.backgroundImage = "url('" + img + "')";
+      });
+    };
+
+    container.appendChild(image);
+  });
+
   
 </script>
 </body>
