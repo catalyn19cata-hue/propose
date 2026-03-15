@@ -430,6 +430,11 @@ function showSection(id){
     section.classList.add("active");
   }
 
+  // 🔥 AICI ADĂUGĂM
+  if(id==="balloons"){
+    clearInterval(heartsInterval);
+  }
+
   if(id==="quiz") loadQuiz();
   if(id==="daily") showDailyMessage();
   if(id==="balloons") createBalloons();
