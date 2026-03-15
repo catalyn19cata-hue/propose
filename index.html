@@ -1102,14 +1102,13 @@ const pieceSize = boardSize / size;
 
       piece.style.backgroundImage = "url('" + currentPuzzleImage + "')";
 
-      piece.style.backgroundSize =
-      boardSize + "px " + boardSize + "px";
+      piece.style.backgroundSize = boardSize + "px " + boardSize + "px";
 
-      const row = Math.floor(value/size);
-      const col = value%size;
+const row = Math.floor(value / size);
+const col = value % size;
 
-      piece.style.backgroundPosition =
-      `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
+piece.style.backgroundPosition =
+`-${col * pieceSize}px -${row * pieceSize}px`;
     }
 
     piece.onclick = ()=>movePiece(index);
