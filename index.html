@@ -1049,6 +1049,7 @@ setInterval(createMusicNote,800);
 let emptyIndex = 8;
 
   const puzzleImages = [
+  let currentPuzzleImage = puzzleImages[0];
   "dada.jpeg",
   "roma14.jpeg",
   "roma17.jpeg",
@@ -1098,8 +1099,7 @@ function loadPuzzle(){
 
       piece.className="piece";
 
-      piece.style.backgroundImage =
-      "url('" + puzzleImages[0] + "')";
+      piece.style.backgroundImage = "url('" + currentPuzzleImage + "')";
 
       piece.style.backgroundSize =
       boardSize + "px " + boardSize + "px";
@@ -1174,12 +1174,13 @@ function loadPuzzleSelector(){
     image.style.borderRadius = "10px";
     image.style.cursor = "pointer";
 
-    image.onclick = () =>{
-      // schimbăm imaginea din puzzle
-      document.querySelectorAll(".piece").forEach(piece=>{
-        piece.style.backgroundImage = "url('" + img + "')";
-      });
-    };
+   image.onclick = ()=>{
+
+  currentPuzzleImage = img;
+
+  loadPuzzle(); // regenerează puzzle-ul și îl amestecă
+
+};
 
     container.appendChild(image);
   });
