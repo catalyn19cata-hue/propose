@@ -779,25 +779,7 @@ function updateLove(touch){
   }
 
 }
-  const loveContainer = document.getElementById("loveContainer");
 
-let isDragging = false;
-
-loveContainer.addEventListener("touchstart", e=>{
-  isDragging = true;
-  updateLove(e.touches[0]);
-});
-
-loveContainer.addEventListener("touchmove", e=>{
-  if(isDragging){
-    e.preventDefault(); // 🔥 oprește scroll DOAR aici
-    updateLove(e.touches[0]);
-  }
-}, { passive: false });
-
-loveContainer.addEventListener("touchend", ()=>{
-  isDragging = false;
-});
 </script>
 
 </body>
