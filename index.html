@@ -369,11 +369,12 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   grid-template-rows: repeat(4, 1fr);
   gap: 3px;
   margin: 20px auto;
+  justify-content: center; 
 }
 
 .piece{
   background-image:url("dada.jpeg");
-  background-size:400px 400px; /* 4x4 => 4 părți */
+  background-size:100% 100%;   /* 🔥 IMPORTANT */
   background-repeat:no-repeat;
   cursor:pointer;
 }
@@ -505,7 +506,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
   <div id="puzzle" class="section">
   <div class="glass-box">
-    <h2>🧩 Puzzle 6x6</h2>
+    <h2>🧩 Puzzle 4x4</h2>
     <div id="puzzleBoard"></div>
   </div>
   <button class="back" onclick="goBack()">⬅ Back</button>
