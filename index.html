@@ -924,7 +924,48 @@ function nextMusicSlide(){
   },1000);
 }
 
-function toggleMusic(){
+function playMusic(){
+
+  const music = document.getElementById("bgMusic");
+
+  music.play();
+
+  clearInterval(musicInterval);
+  musicInterval = setInterval(nextMusicSlide,7000);
+
+  musicPlaying = true;
+}
+
+function pauseMusic(){
+
+  const music = document.getElementById("bgMusic");
+
+  music.pause();
+
+  clearInterval(musicInterval);
+
+  musicPlaying = false;
+}
+
+function stopMusic(){
+
+  const music = document.getElementById("bgMusic");
+
+  music.pause();
+  music.currentTime = 0; // 🔥 revine la început
+
+  clearInterval(musicInterval);
+
+  musicIndex = 0;
+
+  const image = document.getElementById("slideImage");
+  const message = document.getElementById("slideMessage");
+
+  image.src = musicSlides[0].img;
+  message.innerText = musicSlides[0].text;
+
+  musicPlaying = false;
+}
 
   const music = document.getElementById("bgMusic");
 
