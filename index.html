@@ -84,10 +84,10 @@ background:rgba(255,255,255,0.3);
 }
 
 .section.active{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* CHENAR */
@@ -361,14 +361,14 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   color:white;
   cursor:pointer;
 }
- #puzzleBoard{
-  width:300px;
-  height:300px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-template-rows:repeat(4,1fr);
-  gap:2px;
-  margin:20px auto;
+#puzzleBoard{
+  width: min(90vw, 320px);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 3px;
+  margin: 20px auto;
 }
 
 .piece{
