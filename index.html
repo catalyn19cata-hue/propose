@@ -955,6 +955,88 @@ function createMusicNote(){
 }
 
 setInterval(createMusicNote,800);
+
+const musicSlides = [
+  {img:"img1.jpg", text:"Mesaj pentru poza 1 💖"},
+  {img:"img2.jpg", text:"Mesaj pentru poza 2 ✨"},
+  {img:"img3.jpg", text:"Mesaj pentru poza 3 🥰"}
+];
+
+let musicIndex = 0;
+let slideInterval = null;
+let isPlaying = true;
+
+function startMusicSection(){
+
+  const image = document.getElementById("slideImage");
+  const message = document.getElementById("slideMessage");
+  const music = document.getElementById("bgMusic");
+
+  musicIndex = 0;
+
+  image.src = musicSlides[musicIndex].img;
+  message.innerText = musicSlides[musicIndex].text;
+
+  music.play();
+
+  startSlideshow();
+
+  isPlaying = true;
+  document.getElementById("playPauseBtn").innerText = "⏸ Pauză";
+}
+
+function startSlideshow(){
+
+  clearInterval(slideInterval);
+
+  slideInterval = setInterval(()=>{
+    nextSlide();
+  },7000);
+}
+
+function nextSlide(){
+
+  const image = document.getElementById("slideImage");
+  const message = document.getElementById("slideMessage");
+
+  image.style.opacity = 0;
+
+  setTimeout(()=>{
+
+    musicIndex = (musicIndex + 1) % musicSlides.length;
+
+    image.src = musicSlides[musicIndex].img;
+    message.innerText = musicSlides[musicIndex].text;
+
+    image.style.opacity = 1;
+
+  },800);
+}
+
+function toggleMusic(){
+
+  const music = document.getElementById("bgMusic");
+
+  if(isPlaying){
+
+    music.pause();
+    clearInterval(slideInterval);
+
+    isPlaying = false;
+    document.getElementById("playPauseBtn").innerText = "▶ Play";
+
+  } else {
+
+    music.play();
+    startSlideshow();
+
+    isPlaying = true;
+    document.getElementById("playPauseBtn").innerText = "⏸ Pauză";
+
+  }
+
+}
+  
 </script>
 </body>
 </html>
