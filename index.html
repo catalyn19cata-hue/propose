@@ -959,18 +959,22 @@ function nextMusicSlide(){
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
 
+  // Fade out
   image.style.opacity = 0;
 
   setTimeout(()=>{
 
     musicIndex = (musicIndex + 1) % musicSlides.length;
 
+    // Când imaginea este încărcată, o afișăm
+    image.onload = () => {
+      image.style.opacity = 1;
+    };
+
     image.src = musicSlides[musicIndex].img;
     message.innerText = musicSlides[musicIndex].text;
 
-    image.style.opacity = 1;
-
-  },1000);
+  },500); // 🔥 mai mic decât înainte (nu 1s)
 }
 
 function playMusic(){
