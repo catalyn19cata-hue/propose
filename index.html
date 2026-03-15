@@ -373,7 +373,6 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   <div id="slideshow">
   <img id="slideImage" src="dada.jpeg">
   <div id="slideMessage"></div>
-  <button id="musicBtn" onclick="toggleMusic()">⏸ Pauză</button>
 </div>
 <div class="menu-container" id="menu">
 <div class="menu">
@@ -464,7 +463,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
     <h2>🎶 Muzica noastră</h2>
 
     <div id="musicArea" style="position:relative; height:300px; overflow:hidden;">
-      <button id="musicBtn" onclick="toggleMusic()">▶ Pornește</button>
+    
     </div>
 
   </div>
@@ -556,7 +555,7 @@ document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 }
 let heartsInterval = setInterval(createHeart,800);
-
+let notesInterval;
 /* QUIZ */
 const questions=[
 
