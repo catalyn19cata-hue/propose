@@ -632,7 +632,7 @@ let centerX = Math.random() * (window.innerWidth - 200);
 let centerY = Math.random() * (window.innerHeight - 200);
 
 function move(){
-  angle += 0.007; // viteza rotației (mai mic = mai lent)
+  angle += 0.003; // viteza rotației (mai mic = mai lent)
 
   x = centerX + Math.cos(angle) * radius;
   y = centerY + Math.sin(angle) * radius;
