@@ -481,8 +481,16 @@ function showSection(id){
 }
 
 function goBack(){
+
+  // arătăm meniul
   document.getElementById("menu").style.display="block";
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+
+  // ascundem toate secțiunile
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+}
 
   document.getElementById("balloonContainer").style.display="none";
   document.getElementById("photoView").style.display="none";
