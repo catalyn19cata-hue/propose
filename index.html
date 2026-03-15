@@ -437,6 +437,20 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
 <div id="balloons" class="section">
 
+  <div id="music" class="section">
+
+  <h2>🎶 Muzica noastră</h2>
+
+  <div id="slideshow">
+    <img id="slideImage" src="" />
+    <div id="slideMessage"></div>
+  </div>
+
+  <button id="musicBtn" onclick="toggleMusic()">
+    ⏸ Pauză / ▶ Pornește
+  </button>
+
+</div>
   <h2>🎉 Surpriză 🎉</h2>
 
   <div id="balloonContainer"></div>
@@ -837,56 +851,88 @@ function updateLove(touch){
   }
 
 }
-const slides = [
+  const musicSlides = [
   {img:"img1.jpg", text:"Mesaj pentru poza 1 💖"},
   {img:"img2.jpg", text:"Mesaj pentru poza 2 ✨"},
   {img:"img3.jpg", text:"Mesaj pentru poza 3 🥰"}
+  // ➜ poți adăuga oricâte vrei aici
 ];
 
-let currentSlide = 0;
+let musicIndex = 0;
+let musicInterval = null;
+let musicPlaying = true;
 
-function showSlide(){
+function startMusicSection(){
+
+  const image = document.getElementById("slideImage");
+  const message = document.getElementById("slideMessage");
+  const music = document.getElementById("bgMusic");
+
+  image.src = musicSlides[0].img;
+  message.innerText = musicSlides[0].text;
+
+  music.play();
+
+  musicInterval = setInterval(nextMusicSlide,7000);
+
+}
+
+function nextMusicSlide(){
+
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
 
   image.style.opacity = 0;
 
   setTimeout(()=>{
-    image.src = slides[currentSlide].img;
-    message.innerText = slides[currentSlide].text;
+
+    musicIndex = (musicIndex + 1) % musicSlides.length;
+
+    image.src = musicSlides[musicIndex].img;
+    message.innerText = musicSlides[musicIndex].text;
+
     image.style.opacity = 1;
+
   },1000);
-
-  currentSlide = (currentSlide + 1) % slides.length;
 }
-
-setInterval(showSlide,7000);
-let notesInterval;
 
 function toggleMusic(){
+
   const music = document.getElementById("bgMusic");
 
-  if(music.paused){
-    music.play();
-    notesInterval = setInterval(createNote,700);
-  } else {
+  if(musicPlaying){
     music.pause();
-    clearInterval(notesInterval);
+    clearInterval(musicInterval);
+    musicPlaying = false;
+  } else {
+    music.play();
+    musicInterval = setInterval(nextMusicSlide,7000);
+    musicPlaying = true;
   }
+
 }
-  function createNote(){
+
+/* NOTE MUZICALE DOAR ÎN ACEASTĂ SECȚIUNE */
+
+function createMusicNote(){
+
+  if(!document.getElementById("music").classList.contains("active"))
+    return;
+
   const note=document.createElement("div");
   note.innerText="🎵";
-  note.style.position="absolute";
-  note.style.left=Math.random()*100+"%";
+  note.style.position="fixed";
+  note.style.left=Math.random()*100+"vw";
   note.style.bottom="0";
   note.style.fontSize="22px";
   note.style.animation="rise 5s linear forwards";
 
-  document.getElementById("musicArea").appendChild(note);
+  document.body.appendChild(note);
 
   setTimeout(()=>note.remove(),5000);
 }
+
+setInterval(createMusicNote,800);
 </script>
 <audio id="bgMusic" src="ordinary.mp3" loop></audio>
 </body>
