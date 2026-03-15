@@ -511,13 +511,16 @@ const questions=[
 
 function loadQuiz(){
 
-const container=document.getElementById("quizContainer");
-container.innerHTML="";
+  const container=document.getElementById("quizContainer");
 
-let shuffled=[...questions].sort(()=>Math.random()-0.5);
-let selected=shuffled.slice(0,7);
+  // 🔥 prevenim dublarea
+  container.replaceChildren();
 
-selected.forEach(q=>{
+  let shuffled=[...questions].sort(()=>Math.random()-0.5);
+
+  let selected=shuffled.slice(0,7);
+
+  selected.forEach(q=>{
 
 let div=document.createElement("div");
 div.className="quiz-question";
