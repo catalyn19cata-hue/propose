@@ -865,15 +865,20 @@ function startMusicSection(){
   const message = document.getElementById("slideMessage");
   const music = document.getElementById("bgMusic");
 
+  // setăm prima imagine
+  musicIndex = 0;
   image.src = musicSlides[0].img;
   message.innerText = musicSlides[0].text;
 
+  // pornim muzica DOAR aici
   music.play();
 
+  // pornim slideshow
+  clearInterval(musicInterval);
   musicInterval = setInterval(nextMusicSlide,7000);
 
+  musicPlaying = true;
 }
-
 function nextMusicSlide(){
 
   const image = document.getElementById("slideImage");
