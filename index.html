@@ -860,6 +860,19 @@ function showSlide(){
 }
 
 setInterval(showSlide,7000);
+function toggleMusic(){
+  const music = document.getElementById("bgMusic");
+  const btn = document.getElementById("musicBtn");
+
+  if(music.paused){
+    music.play();
+    btn.innerText="⏸ Pauză";
+  } else {
+    music.pause();
+    btn.innerText="▶ Pornește";
+  }
+}
+  
 </script>
 <audio id="bgMusic" src="ordinary.mp3" loop></audio>
 </body>
