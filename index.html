@@ -361,12 +361,12 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   color:white;
   cursor:pointer;
 }
-  #puzzleBoard{
+ #puzzleBoard{
   width:300px;
   height:300px;
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  grid-template-rows:repeat(6,1fr);
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(4,1fr);
   gap:2px;
   margin:20px auto;
 }
@@ -1035,8 +1035,8 @@ function loadPuzzle(){
   board.innerHTML = "";
   puzzlePieces = [];
 
-  for(let row=0; row<6; row++){
-    for(let col=0; col<6; col++){
+ for(let row=0; row<4; row++){
+  for(let col=0; col<4; col++){
 
       const piece = document.createElement("div");
       piece.className = "piece";
