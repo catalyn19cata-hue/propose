@@ -820,6 +820,8 @@ function backToBalloons(){
 }
 const loveContainer = document.getElementById("loveContainer");
 
+if(loveContainer){
+
 let isDragging = false;
 
 loveContainer.addEventListener("touchstart", e=>{
@@ -837,6 +839,7 @@ loveContainer.addEventListener("touchend", ()=>{
   isDragging = false;
 });
 
+}
 function updateLove(touch){
 
   const rect = loveContainer.getBoundingClientRect();
