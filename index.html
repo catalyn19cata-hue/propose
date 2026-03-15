@@ -370,7 +370,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   width:100%;
   aspect-ratio:1/1;
   background-image:url("Fer1.jpeg");
-  background-size:400px 400px;
+background-size:cover;
   background-repeat:no-repeat;
   cursor:pointer;
 }
@@ -502,7 +502,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
   <div id="puzzle" class="section">
   <div class="glass-box">
-    <h2>🧩 Puzzle 4x4</h2>
+   <h2>🧩 Puzzle 3x3</h2>
     <div id="puzzleBoard"></div>
     <div id="puzzleSelector"></div>
   </div>
@@ -1066,26 +1066,26 @@ function loadPuzzle(){
   board.innerHTML = "";
   puzzlePieces = [];
 
-  cconst size = 3;
-const boardSize = 300;
+  const size = 3;
+  const boardSize = 300;
 
-for(let row=0; row<size; row++){
-  for(let col=0; col<size; col++){
+  for(let row=0; row<size; row++){
+    for(let col=0; col<size; col++){
 
-    const piece = document.createElement("div");
-    piece.className = "piece";
+      const piece = document.createElement("div");
+      piece.className = "piece";
 
-    piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
-    piece.style.backgroundSize = boardSize + "px " + boardSize + "px";
+      piece.style.backgroundImage = "url('" + puzzleImages[0] + "')";
+      piece.style.backgroundSize = boardSize + "px " + boardSize + "px";
 
-    piece.style.backgroundPosition =
-      `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
+      piece.style.backgroundPosition =
+        `-${col*(boardSize/size)}px -${row*(boardSize/size)}px`;
 
-    piece.onclick = () => selectPiece(piece);
+      piece.onclick = () => selectPiece(piece);
 
-    board.appendChild(piece);
+      puzzlePieces.push(piece);
+    }
   }
-}}
 
   puzzlePieces.sort(() => Math.random() - 0.5);
 
