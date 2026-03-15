@@ -513,56 +513,66 @@ let quizIndex = 0;
 function loadQuiz(){
 
   const container=document.getElementById("quizContainer");
+  container.innerHTML="";
 
-  // 🔥 prevenim dublarea
-  container.replaceChildren();
+  // dacă nu avem ordine sau am terminat tot
+  if(quizOrder.length === 0 || quizIndex >= quizOrder.length){
+    quizOrder = [...questions].sort(()=>Math.random()-0.5);
+    quizIndex = 0;
+  }
 
-  let shuffled=[...questions].sort(()=>Math.random()-0.5);
-
-  let selected=shuffled.slice(0,7);
+  // luăm următoarele 7
+  let selected = quizOrder.slice(quizIndex, quizIndex+7);
 
   selected.forEach(q=>{
 
-let div=document.createElement("div");
-div.className="quiz-question";
-div.innerHTML="<h3>"+q.q+"</h3>";
+    let div=document.createElement("div");
+    div.className="quiz-question";
+    div.innerHTML="<h3>"+q.q+"</h3>";
 
-let answersDiv = document.createElement("div");
-answersDiv.className = "answers";
+    let answersDiv=document.createElement("div");
+    answersDiv.className="answers";
 
-q.a.forEach((ans,i)=>{
-let btn=document.createElement("button");
-btn.innerText=ans;
+    q.a.forEach((ans,i)=>{
 
-btn.onclick=()=>{
+      let btn=document.createElement("button");
+      btn.innerText=ans;
 
-// toggle select/deselect
-if(btn.style.background===""){
-Array.from(div.querySelectorAll("button")).forEach(b=>b.style.background="");
-btn.style.background="#ffffff55";
-}
-else{
-btn.style.background="";
-}
+      btn.onclick=()=>{
 
-if(i===q.c){
-showPopup("😘");
-btn.style.background="green";
-}
-else{
-showPopup("😢");
-btn.style.background="red";
-}
+        Array.from(answersDiv.querySelectorAll("button"))
+          .forEach(b=>b.style.background="");
 
-};
+        btn.style.background="#ffffff55";
 
-div.appendChild(btn);
+        if(i===q.c){
+          showPopup("😘");
+          btn.style.background="green";
+        }else{
+          showPopup("😢");
+          btn.style.background="red";
+        }
 
-});
+      };
 
-container.appendChild(div);
+      answersDiv.appendChild(btn);
 
-});
+    });
+
+    div.appendChild(answersDiv);
+    container.appendChild(div);
+
+  });
+
+  quizIndex += 7;
+
+  // buton următoarele 7
+  let nextBtn=document.createElement("button");
+  nextBtn.innerText="👉 Următoarele 7";
+  nextBtn.style.marginTop="20px";
+  nextBtn.onclick=loadQuiz;
+
+  container.appendChild(nextBtn);
 }
 
 /* LOVE */
