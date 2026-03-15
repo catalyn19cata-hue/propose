@@ -967,19 +967,6 @@ function stopMusic(){
   musicPlaying = false;
 }
 
-  const music = document.getElementById("bgMusic");
-
-  if(musicPlaying){
-    music.pause();
-    clearInterval(musicInterval);
-    musicPlaying = false;
-  } else {
-    music.play();
-    musicInterval = setInterval(nextMusicSlide,7000);
-    musicPlaying = true;
-  }
-
-}
 
 /* NOTE MUZICALE DOAR ÎN ACEASTĂ SECȚIUNE */
 
