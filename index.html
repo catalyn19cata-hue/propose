@@ -431,6 +431,13 @@ body{
 
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
+#effectsLayer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+  
   </style> 
 </head>
   <body>
@@ -566,7 +573,9 @@ body{
   </div>
   <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
-  
+
+<div id="effectsLayer"></div>
+    
 <script>
 
 /* NAVIGARE */
@@ -1282,6 +1291,8 @@ function loadPuzzleSelector(){
   });
 
 }
+document.getElementById("effectsLayer").appendChild(heart);
+  
 </script>
 </body>
 </html>
