@@ -1214,6 +1214,16 @@ piece.style.backgroundPosition =
   }
 
 }
+  function checkPuzzleComplete(){
+
+  for(let i=0;i<puzzle.length;i++){
+    if(puzzle[i] !== i){
+      return false;
+    }
+  }
+
+  return true;
+}
 function selectPiece(piece){
 
   if(!firstSelected){
