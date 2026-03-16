@@ -1181,7 +1181,7 @@ function movePiece(index){
     Math.abs(row-emptyRow) +
     Math.abs(col-emptyCol);
 
-  if(distance === 1){
+ if(distance === 1 && !puzzleSolved){
 
     [puzzle[index],puzzle[emptyIndex]] =
     [puzzle[emptyIndex],puzzle[index]];
