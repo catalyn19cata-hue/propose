@@ -22,9 +22,32 @@ align-items:center;
 }
 
 h1{
-margin-top:25px;
-text-align:center;
-width:100%;
+  margin-top:25px;
+  font-family:'Dancing Script', cursive;
+  font-size:65px;
+  letter-spacing:5px;
+  color:white;
+  text-shadow:
+    0 0 10px #00bfff,
+    0 0 20px #00bfff,
+    0 0 40px #008cff,
+    0 0 60px #0066ff;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    text-shadow:
+      0 0 5px #00bfff,
+      0 0 10px #00bfff,
+      0 0 20px #008cff;
+  }
+  to{
+    text-shadow:
+      0 0 20px #00e1ff,
+      0 0 40px #0099ff,
+      0 0 70px #0066ff;
+  }
 }
 *{
 box-sizing:border-box;
@@ -398,7 +421,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
 <body>
 
-<h1>Pagină Specială 💖</h1>
+<h1>💖 C&C 💙</h1>
 
 <img src="Fer1.jpeg" class="top-photo">
 
