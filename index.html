@@ -444,27 +444,33 @@ body{
   color:#ffffff;
 }
 
-   button{
-    width:100%;
-    padding:16px;
-    font-size:16px;
-    border-radius:18px;
+  button{
+  width:100%;
+  padding:16px;
+  font-size:16px;
+  border-radius:18px;
 
-    background:rgba(255,255,255,0.15);
-    border:1px solid rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.45);
 
-    color:#ffffff;
-    font-weight:500;
+  color:#ffffff;
+  font-weight:600; /* 👈 mai îngroșat */
 
-    cursor:pointer;
-    transition:0.25s ease;
-    backdrop-filter:blur(10px);
-  }
+  cursor:pointer;
+  transition:0.25s ease;
 
-  button:hover{
-    transform:scale(1.04);
-    background:rgba(255,255,255,0.25);
-  }
+  backdrop-filter:blur(10px);
+
+  /* ✨ efect neon subtil */
+  text-shadow:0 0 8px rgba(255,255,255,0.7);
+}
+
+button:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.22);
+
+  text-shadow:0 0 12px rgba(255,255,255,0.9);
+}
   
   </style> 
 </head>
