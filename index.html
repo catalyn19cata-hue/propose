@@ -72,15 +72,21 @@ gap:18px;
 }
 
 button{
-width:100%;
-padding:18px;
-font-size:18px;
-border-radius:20px;
-background:rgba(255,255,255,0.2);
-border:1px solid rgba(255,255,255,0.4);
-color:white;
-cursor:pointer;
-transition:0.3s;
+  width:100%;
+  padding:18px;
+  font-size:18px;
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.25);
+  border:1px solid rgba(255,255,255,0.6);
+
+  color:white;
+  font-weight:bold;
+
+  cursor:pointer;
+  transition:0.3s;
+
+  backdrop-filter:blur(10px);
 }
 
 button:hover{
@@ -106,12 +112,16 @@ background:rgba(255,255,255,0.3);
   max-width:420px;
   margin:20px auto;
   padding:25px;
-  box-sizing:border-box;
-  background:rgba(255,255,255,0.15);
+
+  background:rgba(255,255,255,0.20); /* puțin mai opac */
   backdrop-filter:blur(20px);
+
   border-radius:30px;
-  border:1px solid rgba(255,255,255,0.4);
-  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  border:1px solid rgba(255,255,255,0.5);
+
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+
+  color:white;
 }
 
 /* TIMER */
@@ -411,13 +421,15 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 body{
   margin:0;
   font-family: Arial, sans-serif;
-background: linear-gradient(135deg, #02081A, #071A3B, #0F4C8A, #2A8FD6, #4FC3F7, #A8F0FF);
+  background: linear-gradient(135deg, #02081A, #071A3B, #0F4C8A, #2A8FD6, #4FC3F7, #A8F0FF);
   color:white;
   text-align:center;
   overflow-x:hidden;
   display:flex;
   flex-direction:column;
   align-items:center;
+
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
   </style> 
 </head>
