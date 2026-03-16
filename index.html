@@ -1131,7 +1131,29 @@ function loadPuzzle(){
 
 }
   function drawPuzzle(){
+if(checkPuzzleComplete()){
 
+  setTimeout(()=>{
+
+    showPopup("🎉");
+
+    const board = document.getElementById("puzzleBoard");
+    board.innerHTML = `
+      <div style="
+        grid-column: span 3;
+        text-align:center;
+        font-size:22px;
+        font-family:'Dancing Script', cursive;
+        color:white;
+        margin-top:20px;
+      ">
+        Felicitări! Ai rezolvat puzzle-ul! 💖
+      </div>
+    `;
+
+  },300);
+
+}
   const board = document.getElementById("puzzleBoard");
   board.innerHTML="";
 
