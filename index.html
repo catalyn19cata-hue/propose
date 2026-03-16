@@ -1181,7 +1181,7 @@ function movePiece(index){
     Math.abs(row-emptyRow) +
     Math.abs(col-emptyCol);
 
- if(distance === 1 && !puzzleSolved){
+  if(distance === 1 && !puzzleSolved){
 
     [puzzle[index],puzzle[emptyIndex]] =
     [puzzle[emptyIndex],puzzle[index]];
@@ -1190,8 +1190,10 @@ function movePiece(index){
 
     drawPuzzle();
 
-    // 🔥 VERIFICARE AICI
-    if(checkPuzzleComplete()){
+    // 🔥 AICI pui codul de verificare
+    if(checkPuzzleComplete() && !puzzleSolved){
+
+      puzzleSolved = true;
 
       setTimeout(()=>{
 
