@@ -372,6 +372,27 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   background-repeat:no-repeat;
   cursor:pointer;
 }
+#puzzleSelector{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:300px;
+}
+
+#puzzleSelector img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+#puzzleSelector img:hover{
+  border:2px solid white;
+}
+  
 </style>
 </head>
 
@@ -500,9 +521,12 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
   <div id="puzzle" class="section">
   <div class="glass-box">
-   <h2>🧩 Puzzle 3x3</h2>
-    <div id="puzzleBoard"></div>
-    <div id="puzzleSelector"></div>
+   <<h2>🧩 Puzzle 3x3</h2>
+
+<div id="puzzleBoard"></div>
+
+<h3 style="margin-top:20px;">Alege poza</h3>
+<div id="puzzleSelector"></div>
   </div>
   <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
