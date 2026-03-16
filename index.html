@@ -605,7 +605,6 @@ if(id==="puzzle"){
 }
   
 }
-function goBack(){
 
   document.getElementById("menu").style.display="block";
 
@@ -613,7 +612,6 @@ function goBack(){
     s.classList.remove("active");
   });
 
-  // 🔊 Oprim muzica dacă era pornită
   const music = document.getElementById("bgMusic");
   if(music){
     music.pause();
@@ -621,7 +619,7 @@ function goBack(){
   }
 
   clearInterval(musicInterval);
-
+}
   // repornim inimile
   heartsInterval = setInterval(createHeart,2500);
 }
@@ -1096,8 +1094,8 @@ function stopMusic(){
 
 function createMusicNote(){
 
-  if(!document.getElementById("music").classList.contains("active"))
-    return;
+ if(!document.getElementById("music").classList.contains("active"))
+  return;
 
   const note=document.createElement("div");
   note.innerText="🎵";
