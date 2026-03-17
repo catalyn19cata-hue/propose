@@ -931,21 +931,25 @@ for(let i=0;i<balloonData.length;i++){
   const b=document.createElement("div");
   b.className="balloon";
 
-  b.style.width="80px";
-  b.style.height="110px";
+  b.style.width="45px";
+  b.style.height="60px";
   b.style.background=`hsl(${Math.random()*360},80%,60%)`;
 
 let angle = Math.random() * Math.PI * 2;
 let radius = 50 + Math.random() * 40; // cât de mare e cercul
-let centerX = Math.random() * (window.innerWidth - 200);
-let centerY = Math.random() * (window.innerHeight - 200);
+const container = document.getElementById("balloonContainer");
+const rect = container.getBoundingClientRect();
+
+let centerX = Math.random() * rect.width;
+let centerY = Math.random() * rect.height;
 
 function move(){
   angle += 0.015; // viteza rotației (mai mic = mai lent)
 
 let x = centerX + Math.cos(angle) * radius;
 let y = centerY + Math.sin(angle) * radius;
-
+x = Math.max(0, Math.min(x, rect.width - 50));
+y = Math.max(0, Math.min(y, rect.height - 70));
   b.style.left = x + "px";
   b.style.top = y + "px";
 
