@@ -484,7 +484,16 @@ button:hover{
   text-shadow:0 0 12px rgba(255,255,255,0.9);
 }
 
-
+.calendar-item{
+  width:100%;
+  margin:10px 0;
+  padding:15px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.4);
+  font-family:'Dancing Script', cursive;
+  font-size:20px;
+}
   </style> 
 </head>
   <body>
@@ -501,6 +510,7 @@ button:hover{
 <button onclick="showSection('balloons')">🎈 Capsula timpului</button>
 <button onclick="showSection('music')">🎶 Muzica noastră</button>
 <button onclick="showSection('puzzle')">🧩 Puzzle</button>
+<button onclick="showSection('calendar')">📆 Calendarul nostru</button>
 </div>
 </div>
 
@@ -555,7 +565,16 @@ button:hover{
 </div>
 <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
+<div id="calendar" class="section">
+  <div class="glass-box">
+    <h2>📆 Calendarul nostru</h2>
 
+    <div id="calendarList"></div>
+
+  </div>
+
+  <button class="back" onclick="goBack()">⬅ Back</button>
+</div>
 <div class="popup" id="popup">😘</div>
 
 <div id="balloons" class="section">
@@ -640,7 +659,7 @@ function showSection(id){
   if(section){
     section.classList.add("active");
   }
-
+if(id==="calendar") loadCalendar();
  if(id==="quiz") loadQuiz();
 if(id==="daily") showDailyMessage();
 if(id==="balloons") createBalloons();
@@ -1338,6 +1357,46 @@ function loadPuzzleSelector(){
   });
 
 }
+  function loadCalendar(){
+
+  const container = document.getElementById("calendarList");
+  container.innerHTML = "";
+
+  const today = new Date();
+
+  specialDates.forEach(item =>{
+
+    const eventDate = new Date(item.date);
+
+    // calcul zile până la eveniment
+    let next = new Date(today.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+
+    if(next < today){
+      next.setFullYear(today.getFullYear()+1);
+    }
+
+    const diff = Math.ceil((next - today) / 86400000);
+
+    const div = document.createElement("div");
+    div.className = "calendar-item";
+
+    div.innerHTML = `
+      <strong>${item.text}</strong><br>
+      📅 ${eventDate.toLocaleDateString()}<br>
+      ⏳ În ${diff} zile
+    `;
+
+    container.appendChild(div);
+
+  });
+  const specialDates = [
+  {date:"2024-02-05", text:"💞 Ziua în care ne-am cunoscut"},
+  {date:"2003-07-12", text:"🎂 Ziua ta de naștere"},
+  {date:"2004-03-18", text:"🎂 Ziua mea de naștere"},
+  {date:"2024-06-10", text:"💋 Primul sărut"},
+  {date:"2024-08-20", text:"🌍 Prima vacanță împreună"}
+];
+
   
 </script>
 </body>
