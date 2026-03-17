@@ -1,14 +1,19 @@
 {
-  "name": "C&C ❤️",
-  "short_name": "C&C",
-  "start_url": ".",
+  "name": "C&C",
+  "short_name": "Impreuna",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#050510",
-  "theme_color": "#ff2d75",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon.jpeg",
       "sizes": "192x192",
+      "type": "roma10.jpeg"
+    },
+    {
+      "src": "roma11.jpeg",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
