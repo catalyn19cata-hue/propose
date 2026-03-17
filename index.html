@@ -1363,63 +1363,48 @@ function loadPuzzleSelector(){
   });
 
 }
-  function loadCalendar(){
+ function loadCalendar(){
 
   const container = document.getElementById("calendarList");
   container.innerHTML = "";
 
   const today = new Date();
 
- specialDates
-  .map(item => {
+  specialDates
+    .map(item => {
 
-    const today = new Date();
-    const eventDate = new Date(item.date);
+      const eventDate = new Date(item.date);
 
-    let next = new Date(
-      today.getFullYear(),
-      eventDate.getMonth(),
-      eventDate.getDate()
-    );
+      let next = new Date(
+        today.getFullYear(),
+        eventDate.getMonth(),
+        eventDate.getDate()
+      );
 
-    if(next < today){
-      next.setFullYear(today.getFullYear()+1);
-    }
+      if(next < today){
+        next.setFullYear(today.getFullYear()+1);
+      }
 
-    const diff = Math.ceil((next - today) / 86400000);
+      const diff = Math.ceil((next - today) / 86400000);
 
-    return {...item, diff, next};
+      return {...item, diff, next, eventDate};
 
-  })
-  .sort((a,b)=>a.diff-b.diff)
-  .forEach(item =>{
+    })
+    .sort((a,b)=>a.diff-b.diff)
+    .forEach(item =>{
 
-    const eventDate = new Date(item.date);
+      const div = document.createElement("div");
+      div.className = "calendar-item";
 
-    let next = new Date(
-      today.getFullYear(),
-      eventDate.getMonth(),
-      eventDate.getDate()
-    );
+      div.innerHTML = `
+        <strong>${item.text}</strong><br>
+        📅 ${item.eventDate.toLocaleDateString()}<br>
+        ⏳ În ${item.diff} zile
+      `;
 
-    if(next < today){
-      next.setFullYear(today.getFullYear()+1);
-    }
+      container.appendChild(div);
 
-    const diff = Math.ceil((next - today) / 86400000);
-
-    const div = document.createElement("div");
-    div.className = "calendar-item";
-
-    div.innerHTML = `
-      <strong>${item.text}</strong><br>
-      📅 ${eventDate.toLocaleDateString()}<br>
-      ⏳ În ${diff} zile
-    `;
-
-    container.appendChild(div);
-
-  });
+    });
 
 }
 
