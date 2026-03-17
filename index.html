@@ -657,6 +657,8 @@ function goBack(){
   if(music){
     music.pause();
     music.currentTime = 0;
+      music.src = "";
+  music.load();
   }
 
   clearInterval(musicInterval);
