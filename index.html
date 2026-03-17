@@ -425,21 +425,23 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   font-size:0.6em;
   vertical-align:middle;
 }
-
 html, body{
-  height:100%;
-  margin: 0;
-  overflow-x hidden;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
 }
-
 body{
   margin:0;
+  min-height:100dvh;
   font-family:'Poppins','Segoe UI',Arial,sans-serif;
   color:#ffffff;
   text-align:center;
   overflow-x:hidden;
-background: linear-gradient(45deg,
-  #050510,#1a0a1a,#3a0f2e,#7a123f,#ff2d75,#ff9ecb);
+
+  background: linear-gradient(45deg,
+    #050510,#1a0a1a,#3a0f2e,#7a123f,#ff2d75,#ff9ecb);
+
+  background-attachment: fixed;
 }
 #effectsLayer{
   position:fixed;
