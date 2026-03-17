@@ -660,7 +660,9 @@ function goBack(){
       music.src = "";
   music.load();
   }
-
+ if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = null;
+  }
   clearInterval(musicInterval);
   heartsInterval = setInterval(createHeart,2500);
 }
