@@ -92,11 +92,11 @@ button:hover{
 .section{
   display:none;
   width:100%;
-  min-height:100dvh;
-  padding:20px 0 10px 0;
+  height:100dvh;   /* 🔥 NU min-height */
+  overflow:hidden; /* 🔥 elimină scroll-ul */
+  padding:0;
   box-sizing:border-box;
 }
-
 .section.active{
   display:flex;
   flex-direction:column;
@@ -489,8 +489,12 @@ button:hover{
   .section{
   display:none;
   width:100%;
-  min-height:100dvh;
-  padding-bottom:20px; /* spațiu mic, controlat */
+
+}
+  body{
+  margin:0;
+  height:100dvh;
+  overflow:hidden;
 }
   </style> 
 </head>
