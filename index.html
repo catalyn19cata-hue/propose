@@ -1053,9 +1053,6 @@ function startMusicSection(){
   image.src = musicSlides[0].img;
   message.innerText = musicSlides[0].text;
 
-  // pornim muzica DOAR aici
-  music.play();
-
   // pornim slideshow
   clearInterval(musicInterval);
   musicInterval = setInterval(nextMusicSlide,7000);
