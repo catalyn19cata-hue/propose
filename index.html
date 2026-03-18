@@ -760,7 +760,6 @@ let firstSelected = null;
 let musicInterval = null;
 let musicHeartInterval = null;
   let musicNoteInterval = null;
-heartsInterval = setInterval(createHeart, 1800);
   
     const specialDates = [
   {date:"2024-02-05", text:"💞 Ziua în care ne-am cunoscut"},
@@ -835,9 +834,9 @@ function goBack(){
     clearInterval(musicHeartInterval);
     musicHeartInterval = null;
   }
-
-}
 startHearts();
+}
+
 function showPopup(emoji){
 
 const popup=document.getElementById("popup");
