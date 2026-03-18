@@ -883,16 +883,7 @@ function showSection(id){
   if(id==="letter"){
   resetLetter();
 }
-  function resetLetter(){
-
-  const envelope = document.getElementById("envelope");
-  const paper = document.getElementById("letterPaper");
-
-  envelope.classList.remove("open");
-  paper.classList.remove("show");
-
-  document.getElementById("letterText").innerHTML = "";
-}
+ 
   stopHearts();
   stopMusic();
   window.scrollTo(0, 0);
@@ -1756,6 +1747,18 @@ function openEnvelope(){
   },500);
 
 }
+
+   function resetLetter(){
+
+  const envelope = document.getElementById("envelope");
+  const paper = document.getElementById("letterPaper");
+
+  envelope.classList.remove("open");
+  paper.classList.remove("show");
+
+  document.getElementById("letterText").innerHTML = "";
+}
+  
   function typeText(text, element){
 
   let i = 0;
