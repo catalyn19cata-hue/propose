@@ -1608,6 +1608,7 @@ function loadPuzzleSelector(){
   function stopHearts(){
   if(heartsInterval){
     clearInterval(heartsInterval);
+    heartsInterval = null; // 🔥 FOARTE IMPORTANT
   }
 }
 function createMusicNote(){
