@@ -825,18 +825,19 @@ sec+" secunde";
 /* INIMI */
 function createHeart(){
 
-  // 👉 Inimile apar DOAR pe pagina principală
   const isHome = document.getElementById("menu").style.display !== "none";
+  const isMusic = document.getElementById("music").classList.contains("active");
 
-  if(!isHome){
+  // ❤️ Inimile apar DOAR pe Home și pe Muzică
+  if(!isHome && !isMusic){
     return;
   }
 
   const heart=document.createElement("div");
   heart.classList.add("heart");
   heart.innerText="❤";
+
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.transform = `translateX(${Math.random()*100}vw)`;
   heart.style.animationDuration=(3+Math.random()*3)+"s";
 
   document.getElementById("effectsLayer").appendChild(heart);
