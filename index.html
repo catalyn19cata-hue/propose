@@ -775,9 +775,10 @@ toggleHeader(true);
 
   // 🔥 OPRIM TOT CE ȚINE DE MUZICĂ
   clearInterval(musicInterval);
+ if (musicHeartInterval) {
   clearInterval(musicHeartInterval);
+  musicHeartInterval = null;
 }
-
 
 /* POPUP */
 function showPopup(emoji){
