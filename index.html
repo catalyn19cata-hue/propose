@@ -1487,12 +1487,6 @@ function loadPuzzleSelector(){
     });
 
 }
-
- if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(() => console.log('Service Worker înregistrat!'))
-    .catch(err => console.log('Eroare la SW:', err));
-}
   function createMusicHeart(){
 
   if(!document.getElementById("music").classList.contains("active"))
