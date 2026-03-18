@@ -194,7 +194,7 @@ display:none;
   font-size:22px;
   animation:rise linear forwards;
 
-  will-change: transform, opacity;
+  will-change: transform;
   transform: translateZ(0);
 }
 
@@ -443,7 +443,7 @@ body{
   background: linear-gradient(45deg,
     #050510,#1a0a1a,#3a0f2e,#7a123f,#ff2d75,#ff9ecb);
 
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 #effectsLayer{
   position:fixed;
@@ -495,6 +495,11 @@ button:hover{
   font-family:'Dancing Script', cursive;
   font-size:20px;
 }
+
+  body{
+  transform: translateZ(0);
+}
+  
   </style> 
 </head>
   <body>
@@ -698,7 +703,7 @@ function goBack(){
     navigator.mediaSession.metadata = null;
   }
   clearInterval(musicInterval);
-  heartsInterval = setInterval(createHeart,2500);
+  heartsInterval = setInterval(createHeart,4000);
 }
 
 
@@ -758,7 +763,7 @@ function createHeart(){
   const heart=document.createElement("div");
   heart.classList.add("heart");
   heart.innerText="❤";
-  heart.style.left=Math.random()*100+"vw";
+ heart.style.transform = translateX(${Math.random()*100}vw);
   heart.style.animationDuration=(3+Math.random()*3)+"s";
   document.getElementById("effectsLayer").appendChild(heart);
 
