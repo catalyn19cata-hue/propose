@@ -770,9 +770,12 @@ function goBack(){
     music.currentTime = 0;
   }
 
-  clearInterval(musicInterval);
+  if(musicInterval){
+    clearInterval(musicInterval);
+    musicInterval = null;
+  }
 
-  if(musicHeartInterval){
+  if(typeof musicHeartInterval !== "undefined" && musicHeartInterval){
     clearInterval(musicHeartInterval);
     musicHeartInterval = null;
   }
