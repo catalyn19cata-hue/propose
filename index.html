@@ -707,6 +707,7 @@ button:hover{
     
 <script>
 
+  let heartsInterval = null;
 let firstSelected = null;
 let musicInterval = null;
 let musicHeartInterval = null;
@@ -725,7 +726,6 @@ function showSection(id){
 
   stopHearts();
   stopMusic();
-
   window.scrollTo(0, 0);
 
   if(id === "daily" || id === "calendar"){
@@ -789,7 +789,7 @@ function goBack(){
   }
 
 }
-/* POPUP */
+startHearts();
 function showPopup(emoji){
 
 const popup=document.getElementById("popup");
@@ -1543,7 +1543,12 @@ function createMusicNote(){
 
   setTimeout(()=>note.remove(),7000);
 }
-  
+  function startHearts(){
+
+  if(heartsInterval) return;
+
+  heartsInterval = setInterval(createHeart, 1800);
+}
 </script>
 </body>
 </html>
