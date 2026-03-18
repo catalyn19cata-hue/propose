@@ -675,7 +675,8 @@ button:hover{
 
 function showSection(id){
 
-  if(id === "time" || id === "daily" || id === "calendar"){
+// 🔥 Header vizibil doar pe: meniu, daily, calendar
+if(id === "daily" || id === "calendar"){
   toggleHeader(true);
 } else {
   toggleHeader(false);
@@ -710,7 +711,7 @@ function goBack(){
   document.querySelectorAll(".section").forEach(s=>{
     s.classList.remove("active");
   });
-
+toggleHeader(true);
   const music = document.getElementById("bgMusic");
   if(music){
     music.pause();
