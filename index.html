@@ -8,6 +8,67 @@
 
 <style>
 
+/* ENVELOPE */
+#envelope{
+  width:220px;
+  height:140px;
+  margin:30px auto;
+  position:relative;
+  background:#ffb6c1;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  overflow:hidden;
+}
+
+.flap{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#ff8fab;
+  clip-path:polygon(0 0,100% 0,50% 60%);
+  transform-origin:top;
+  transition:0.8s;
+}
+
+.heart-seal{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:28px;
+}
+
+/* DESCHIS */
+#envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+/* FOAIA */
+#letterPaper{
+  width:90%;
+  max-width:400px;
+  margin:20px auto;
+  padding:20px;
+
+  background:white;
+  color:black;
+
+  border-radius:15px;
+
+  opacity:0;
+  transform:translateY(-50px);
+  transition:0.8s;
+
+  font-family:'Dancing Script', cursive;
+  font-size:22px;
+}
+
+#letterPaper.show{
+  opacity:1;
+  transform:translateY(0);
+}
+  
   @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap');
 
 .quiz-title{
@@ -643,6 +704,7 @@ button:hover{
 <button onclick="showSection('music')">🎶 Muzica noastră</button>
 <button onclick="showSection('puzzle')">🧩 Puzzle</button>
 <button onclick="showSection('calendar')">📆 Calendarul nostru</button>
+<button onclick="showSection('letter')">💌 Citește când îți este dor</button>
 </div>
 </div>
 
@@ -663,7 +725,25 @@ button:hover{
 </div>
 <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
+<div id="letter" class="section">
 
+  <div class="glass-box">
+
+    <h2>💌 Citește când îți este dor</h2>
+
+    <div id="envelope" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="heart-seal">💖</div>
+    </div>
+
+    <div id="letterPaper">
+      <div id="letterText"></div>
+    </div>
+
+  </div>
+
+  <button class="back" onclick="goBack()">⬅ Back</button>
+</div>
 <!-- QUIZ -->
 <div id="quiz" class="section">
   <div class="glass-box">
@@ -800,6 +880,19 @@ let musicHeartInterval = null;
 /* NAVIGARE */
 function showSection(id){
 
+  if(id==="letter"){
+  resetLetter();
+}
+  function resetLetter(){
+
+  const envelope = document.getElementById("envelope");
+  const paper = document.getElementById("letterPaper");
+
+  envelope.classList.remove("open");
+  paper.classList.remove("show");
+
+  document.getElementById("letterText").innerHTML = "";
+}
   stopHearts();
   stopMusic();
   window.scrollTo(0, 0);
@@ -1640,6 +1733,42 @@ function createMusicNote(){
   if(heartsInterval) return;
 
   heartsInterval = setInterval(createHeart, 1800);
+}
+
+function openEnvelope(){
+
+  const envelope = document.getElementById("envelope");
+  const paper = document.getElementById("letterPaper");
+
+  envelope.classList.add("open");
+
+  // alegem mesaj random
+  const randomText = loveLetters[Math.floor(Math.random() * loveLetters.length)];
+
+  // reset text
+  const textDiv = document.getElementById("letterText");
+  textDiv.innerHTML = "";
+
+  // arătăm foaia după animație
+  setTimeout(()=>{
+    paper.classList.add("show");
+    typeText(randomText, textDiv);
+  },500);
+
+}
+  function typeText(text, element){
+
+  let i = 0;
+
+  function typing(){
+    if(i < text.length){
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 40); // viteza scrisului
+    }
+  }
+
+  typing();
 }
 </script>
 </body>
