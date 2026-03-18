@@ -715,18 +715,18 @@ button:hover{
   {date:"2024-08-20", text:"🌍 Prima vacanță împreună"}
 ];
 /* NAVIGARE */
-
 function showSection(id){
- stopHearts();
+
+  stopHearts();
   stopMusic();
 
-window.scrollTo(0, 0);
-// 🔥 Header vizibil doar pe: meniu, daily, calendar
-if(id === "daily" || id === "calendar"){
-  toggleHeader(true);
-} else {
-  toggleHeader(false);
-}
+  window.scrollTo(0, 0);
+
+  if(id === "daily" || id === "calendar"){
+    toggleHeader(true);
+  } else {
+    toggleHeader(false);
+  }
 
   document.getElementById("menu").style.display="none";
 
@@ -738,16 +738,17 @@ if(id === "daily" || id === "calendar"){
   if(section){
     section.classList.add("active");
   }
-if(id==="calendar") loadCalendar();
- if(id==="quiz") loadQuiz();
-if(id==="daily") showDailyMessage();
-if(id==="balloons") createBalloons();
-if(id==="music") startMusicSection();
-if(id==="puzzle"){
-  loadPuzzle();
-  loadPuzzleSelector();
-}
-  
+
+  if(id==="calendar") loadCalendar();
+  if(id==="quiz") loadQuiz();
+  if(id==="daily") showDailyMessage();
+  if(id==="balloons") createBalloons();
+  if(id==="music") startMusicSection();
+  if(id==="puzzle"){
+    loadPuzzle();
+    loadPuzzleSelector();
+  }
+
 }
 
 function goBack(){
