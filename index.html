@@ -708,13 +708,19 @@ function goBack(){
   if(music){
     music.pause();
     music.currentTime = 0;
-      music.src = "";
-  music.load();
+    music.src = "";
+    music.load();
   }
- if ('mediaSession' in navigator) {
+
+  if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = null;
   }
+
+  // 🔥 OPRIM TOT CE ȚINE DE MUZICĂ
   clearInterval(musicInterval);
+  clearInterval(musicHeartInterval);
+
+  // ❤️ Repornim inimile de pe homepage
   heartsInterval = setInterval(createHeart,4000);
 }
 
@@ -780,7 +786,7 @@ function createHeart(){
   setTimeout(()=>heart.remove(),6000);
 }
 let heartsInterval = setInterval(createHeart,2000);
-
+let musicHeartInterval = null;
 /* QUIZ */
 const questions=[
 
@@ -1104,13 +1110,16 @@ function startMusicSection(){
   const message = document.getElementById("slideMessage");
   const music = document.getElementById("bgMusic");
   music.src = "muzica.mpeg";
-  // setăm prima imagine
+
   musicIndex = 0;
   image.src = musicSlides[0].img;
   message.innerText = musicSlides[0].text;
 
-
   musicPlaying = true;
+
+  // 🔥 PORNIM INIMILE ÎN MUZICĂ
+  clearInterval(musicHeartInterval);
+  musicHeartInterval = setInterval(createMusicHeart, 1500);
 }
 function nextMusicSlide(){
 
