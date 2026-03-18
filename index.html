@@ -710,7 +710,7 @@ button:hover{
 let firstSelected = null;
 let musicInterval = null;
 let musicHeartInterval = null;
-let heartsInterval = null;
+heartsInterval = setInterval(createHeart, 1800);
   
     const specialDates = [
   {date:"2024-02-05", text:"💞 Ziua în care ne-am cunoscut"},
@@ -1513,6 +1513,7 @@ function loadPuzzleSelector(){
     clearInterval(heartsInterval);
   }
 }
+  
 </script>
 </body>
 </html>
