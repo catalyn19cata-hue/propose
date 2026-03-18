@@ -516,7 +516,10 @@ button:hover{
 </head>
   <body>
 
-<h1 id="mainTitle">❤️ C <span class="amp">&</span> C 💙</h1>
+<div id="headerSection">
+  <h1 id="mainTitle">❤️ C <span class="amp">&</span> C 💙</h1>
+  <img src="Fer1.jpeg" class="top-photo">
+</div>
 <img src="Fer1.jpeg" class="top-photo">
 
 <div class="menu-container" id="menu">
@@ -672,7 +675,12 @@ button:hover{
 /* NAVIGARE */
 
 function showSection(id){
-  
+
+  if(id === "time" || id === "daily" || id === "calendar"){
+  toggleHeader(true);
+} else {
+  toggleHeader(false);
+}
 
   document.getElementById("menu").style.display="none";
 
@@ -1455,6 +1463,10 @@ function loadPuzzleSelector(){
   document.getElementById("effectsLayer").appendChild(heart);
 
   setTimeout(()=>heart.remove(),7000);
+}
+  function toggleHeader(show){
+  const header = document.getElementById("headerSection");
+  header.style.display = show ? "block" : "none";
 }
 </script>
 </body>
