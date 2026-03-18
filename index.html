@@ -810,6 +810,13 @@ function showSection(id){
     toggleHeader(false);
   }
 
+  // 🔥 control inimioare
+  if(id === "home"){
+    startHearts();
+  }
+
+}
+
   document.getElementById("menu").style.display="none";
 
   document.querySelectorAll(".section").forEach(s=>{
