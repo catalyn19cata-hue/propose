@@ -426,12 +426,13 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
   cursor:pointer;
 }
 #puzzleBoard{
-  width:300px;
-  max-width:90vw;
-  aspect-ratio:1/1;
+  width:90vw;
+  max-width:320px;   /* dimensiune maximă pe desktop */
+  aspect-ratio:4/3;  /* IMPORTANT pentru puzzle 4x3 */
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:3px;
+  margin:0 auto;     /* 🔥 CENTRARE */
 }
 
 .piece{
