@@ -8,6 +8,38 @@
 
 <style>
 
+.quiz-title{
+  font-family:'Dancing Script', cursive;
+  font-size:32px;
+  margin-bottom:20px;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+/* inimioara roz strălucitoare */
+.quiz-heart{
+  font-size:28px;
+  animation: pinkGlow 1.5s infinite alternate;
+}
+
+@keyframes pinkGlow{
+  from{
+    text-shadow:
+      0 0 5px #ff66cc,
+      0 0 10px #ff33aa,
+      0 0 20px #ff0099;
+  }
+  to{
+    text-shadow:
+      0 0 15px #ffb3ec,
+      0 0 30px #ff4dc4,
+      0 0 50px #ff00cc;
+  }
+}
+  
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;600&display=swap');
 h1{
   margin-top:25px;
