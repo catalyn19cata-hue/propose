@@ -706,7 +706,6 @@ button:hover{
 <div id="effectsLayer"></div>
     
 <script>
-let heartsInterval = null;
 let musicInterval = null;
   
     const specialDates = [
@@ -775,10 +774,9 @@ toggleHeader(true);
 
   // 🔥 OPRIM TOT CE ȚINE DE MUZICĂ
   clearInterval(musicInterval);
- if (musicHeartInterval) {
+ if (typeof musicHeartInterval !== "undefined" && musicHeartInterval) {
   clearInterval(musicHeartInterval);
   musicHeartInterval = null;
-}
 }
 /* POPUP */
 function showPopup(emoji){
