@@ -759,24 +759,22 @@ function goBack(){
   document.querySelectorAll(".section").forEach(s=>{
     s.classList.remove("active");
   });
-toggleHeader(true);
+
+  toggleHeader(true);
+
   const music = document.getElementById("bgMusic");
   if(music){
     music.pause();
     music.currentTime = 0;
-    music.src = "";
-    music.load();
   }
 
-  if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = null;
-  }
-
-  // 🔥 OPRIM TOT CE ȚINE DE MUZICĂ
   clearInterval(musicInterval);
- if (typeof musicHeartInterval !== "undefined" && musicHeartInterval) {
-  clearInterval(musicHeartInterval);
-  musicHeartInterval = null;
+
+  if(musicHeartInterval){
+    clearInterval(musicHeartInterval);
+    musicHeartInterval = null;
+  }
+
 }
 /* POPUP */
 function showPopup(emoji){
