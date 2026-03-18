@@ -830,29 +830,6 @@ function showSection(id){
   }
 }
 
-  document.getElementById("menu").style.display="none";
-
-  document.querySelectorAll(".section").forEach(s=>{
-    s.classList.remove("active");
-  });
-
-  const section=document.getElementById(id);
-  if(section){
-    section.classList.add("active");
-  }
-
-  if(id==="calendar") loadCalendar();
-  if(id==="quiz") loadQuiz();
-  if(id==="daily") showDailyMessage();
-  if(id==="balloons") createBalloons();
-  if(id==="music") startMusicSection();
-  if(id==="puzzle"){
-    loadPuzzle();
-    loadPuzzleSelector();
-  }
-
-}
-
 function goBack(){
 
   if(musicNoteInterval){
