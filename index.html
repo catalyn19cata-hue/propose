@@ -548,53 +548,54 @@ button:hover{
   overscroll-behavior: contain;
 }
 
-  .main-heart{
+ .main-heart{
+  position:relative;
   width:220px;
   height:200px;
   margin:20px auto;
-  position:relative;
+}
 
+/* partea stângă */
+.main-heart::before,
+.main-heart::after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:170px;
   background:white;
-  clip-path: path("M100 30 
-    C60 -20, -20 40, 100 180 
-    C220 40, 140 -20, 100 30 Z");
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  border-radius:110px 110px 0 0;
+  top:0;
 
   box-shadow:
     0 0 20px #ffffff,
     0 0 40px #ffffff,
-    0 0 80px #ffffff,
-    0 0 120px #ffffff;
-
-  animation: neonPulse 2s infinite alternate;
+    0 0 80px #ffffff;
 }
 
+/* stânga */
+.main-heart::before{
+  left:55px;
+  transform:rotate(-45deg);
+}
+
+/* dreapta */
+.main-heart::after{
+  left:55px;
+  transform:rotate(45deg);
+}
+
+/* text în mijloc */
 .heart-text{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  top:60px;
   font-family:'Dancing Script', cursive;
   font-size:40px;
   font-weight:700;
-  color:#000; /* negru pentru contrast */
-  text-shadow:none;
+  color:#000;
+  z-index:2;
 }
-
-@keyframes neonPulse{
-  from{
-    box-shadow:
-      0 0 10px #ffffff,
-      0 0 25px #ffffff,
-      0 0 50px #ffffff;
-  }
-  to{
-    box-shadow:
-      0 0 25px #ffffff,
-      0 0 60px #ffffff,
-      0 0 120px #ffffff;
-  }
-}
-  
   </style> 
 </head>
   <body>
