@@ -717,6 +717,8 @@ button:hover{
 /* NAVIGARE */
 
 function showSection(id){
+ stopHearts();
+  stopMusic();
 
 window.scrollTo(0, 0);
 // 🔥 Header vizibil doar pe: meniu, daily, calendar
@@ -837,7 +839,6 @@ function createHeart(){
 
   setTimeout(()=>heart.remove(),6000);
 }
-let heartsInterval = setInterval(createHeart,2000);
 let musicHeartInterval = null;
 /* QUIZ */
 const questions=[
@@ -1511,6 +1512,19 @@ function loadPuzzleSelector(){
   function toggleHeader(show){
   const header = document.getElementById("headerSection");
   header.style.display = show ? "block" : "none";
+}
+  function stopHearts(){
+  if(heartsInterval){
+    clearInterval(heartsInterval);
+    heartsInterval = null;
+  }
+}
+
+function stopMusic(){
+  if(musicInterval){
+    clearInterval(musicInterval);
+    musicInterval = null;
+  }
 }
 </script>
 </body>
