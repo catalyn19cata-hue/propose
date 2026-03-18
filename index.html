@@ -547,12 +547,62 @@ button:hover{
   touch-action: none;
   overscroll-behavior: contain;
 }
+
+  .main-heart{
+  width:220px;
+  height:200px;
+  margin:20px auto;
+  position:relative;
+
+  background:white;
+  clip-path: path("M100 30 
+    C60 -20, -20 40, 100 180 
+    C220 40, 140 -20, 100 30 Z");
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 0 20px #ffffff,
+    0 0 40px #ffffff,
+    0 0 80px #ffffff,
+    0 0 120px #ffffff;
+
+  animation: neonPulse 2s infinite alternate;
+}
+
+.heart-text{
+  font-family:'Dancing Script', cursive;
+  font-size:40px;
+  font-weight:700;
+  color:#000; /* negru pentru contrast */
+  text-shadow:none;
+}
+
+@keyframes neonPulse{
+  from{
+    box-shadow:
+      0 0 10px #ffffff,
+      0 0 25px #ffffff,
+      0 0 50px #ffffff;
+  }
+  to{
+    box-shadow:
+      0 0 25px #ffffff,
+      0 0 60px #ffffff,
+      0 0 120px #ffffff;
+  }
+}
+  
   </style> 
 </head>
   <body>
 
 <div id="headerSection">
-  <h1 id="mainTitle">❤️ C <span class="amp">&</span> C 💙</h1>
+<div class="main-heart">
+  <div class="heart-text">C & C</div>
+</div>
   <img src="Fer1.jpeg" class="top-photo">
 </div>
 
