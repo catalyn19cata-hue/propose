@@ -815,6 +815,13 @@ function showSection(id){
     section.classList.add("active");
   }
 
+  // 🔥 AICI CONTROLĂM HEADER-UL
+  if(id === "daily"){
+    toggleHeader(true);   // apare la Mesajul zilei
+  } else {
+    toggleHeader(false);  // dispare peste tot altundeva
+  }
+
   if(id==="calendar") loadCalendar();
   if(id==="quiz") loadQuiz();
   if(id==="daily") showDailyMessage();
@@ -823,10 +830,6 @@ function showSection(id){
   if(id==="puzzle"){
     loadPuzzle();
     loadPuzzleSelector();
-  }
-
-  if(id==="home"){
-    startHearts();
   }
 }
 
