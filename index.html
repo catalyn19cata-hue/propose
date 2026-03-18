@@ -1369,21 +1369,26 @@ function loadPuzzle(){
   const board = document.getElementById("puzzleBoard");
   board.innerHTML = "";
 
-  const size = 3;
+  const rows = 3;
+  const cols = 4;
+  const totalPieces = rows * cols;
 
   puzzle = [];
 
- for(let i=0;i<12;i++)
+  for(let i = 0; i < totalPieces - 1; i++){
     puzzle.push(i);
   }
 
-  // amestecăm piesele
-  puzzle.sort(()=>Math.random()-0.5);
+  // piesa goală
+  puzzle.push(totalPieces - 1);
 
-  emptyIndex = puzzle.indexOf(8);
+  puzzle.sort(() => Math.random() - 0.5);
+
+  emptyIndex = puzzle.indexOf(totalPieces - 1);
+
+  puzzleSolved = false;
 
   drawPuzzle();
-
 }
   function drawPuzzle(){
 
