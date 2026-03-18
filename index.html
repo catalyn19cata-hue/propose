@@ -710,6 +710,7 @@ button:hover{
 let firstSelected = null;
 let musicInterval = null;
 let musicHeartInterval = null;
+  let musicNoteInterval = null;
 heartsInterval = setInterval(createHeart, 1800);
   
     const specialDates = [
@@ -758,6 +759,11 @@ function showSection(id){
 
 function goBack(){
 
+  if(musicNoteInterval){
+  clearInterval(musicNoteInterval);
+  musicNoteInterval = null;
+}
+  
   document.getElementById("menu").style.display="block";
 
   document.querySelectorAll(".section").forEach(s=>{
@@ -1162,6 +1168,9 @@ let musicPlaying = true;
 
 function startMusicSection(){
 
+  clearInterval(musicNoteInterval);
+musicNoteInterval = setInterval(createMusicNote, 1000);
+
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
   const music = document.getElementById("bgMusic");
@@ -1512,6 +1521,27 @@ function loadPuzzleSelector(){
   if(heartsInterval){
     clearInterval(heartsInterval);
   }
+}
+function createMusicNote(){
+
+  // apar doar în secțiunea Muzică
+  if(!document.getElementById("music").classList.contains("active"))
+    return;
+
+  const note = document.createElement("div");
+  note.classList.add("heart"); // folosim aceeași animație "rise"
+  note.innerText = "🎵";
+
+  note.style.left = Math.random() * 100 + "vw";
+  note.style.bottom = "0";
+  note.style.fontSize = (18 + Math.random()*10) + "px";
+  note.style.color = "#ffffff";
+
+  note.style.animationDuration = (4 + Math.random()*3) + "s";
+
+  document.getElementById("effectsLayer").appendChild(note);
+
+  setTimeout(()=>note.remove(),7000);
 }
   
 </script>
