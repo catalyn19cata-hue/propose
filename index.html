@@ -865,7 +865,9 @@ function goBack(){
   }
 
 }
-startHearts();
+window.addEventListener("load", () => {
+  startHearts();
+});
 function showPopup(emoji){
 
 const popup=document.getElementById("popup");
