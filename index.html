@@ -804,14 +804,28 @@ function showSection(id){
   stopMusic();
   window.scrollTo(0, 0);
 
-  if(id === "daily" || id === "calendar"){
-    toggleHeader(true);
-  } else {
-    toggleHeader(false);
+  document.getElementById("menu").style.display="none";
+
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  const section=document.getElementById(id);
+  if(section){
+    section.classList.add("active");
   }
 
-  // 🔥 control inimioare
-  if(id === "home"){
+  if(id==="calendar") loadCalendar();
+  if(id==="quiz") loadQuiz();
+  if(id==="daily") showDailyMessage();
+  if(id==="balloons") createBalloons();
+  if(id==="music") startMusicSection();
+  if(id==="puzzle"){
+    loadPuzzle();
+    loadPuzzleSelector();
+  }
+
+  if(id==="home"){
     startHearts();
   }
 
