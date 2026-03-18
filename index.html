@@ -706,7 +706,9 @@ button:hover{
 <div id="effectsLayer"></div>
     
 <script>
-
+let heartsInterval = null;
+let musicInterval = null;
+  
     const specialDates = [
   {date:"2024-02-05", text:"💞 Ziua în care ne-am cunoscut"},
   {date:"2003-07-12", text:"🎂 Ziua ta de naștere"},
@@ -774,9 +776,6 @@ toggleHeader(true);
   // 🔥 OPRIM TOT CE ȚINE DE MUZICĂ
   clearInterval(musicInterval);
   clearInterval(musicHeartInterval);
-
-  // ❤️ Repornim inimile de pe homepage
-  heartsInterval = setInterval(createHeart,4000);
 }
 
 
