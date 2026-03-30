@@ -1841,6 +1841,65 @@ function openEnvelope(){
     `;
   }
 }
+
+  function loadPuzzle(){
+
+  const board = document.getElementById("puzzleBoard");
+  const piecesContainer = document.getElementById("puzzlePieces");
+
+  board.innerHTML = "";
+  piecesContainer.innerHTML = "";
+
+  let pieces = [];
+
+  for(let i=0;i<12;i++){
+    pieces.push(i);
+  }
+
+  // amestecăm piesele
+  pieces.sort(()=>Math.random()-0.5);
+
+  // 🔲 sloturi goale (tabla)
+  for(let i=0;i<12;i++){
+    const slot = document.createElement("div");
+    slot.className = "piece slot";
+
+    slot.dataset.index = i;
+
+    slot.onclick = ()=>{
+      if(selectedPiece){
+        slot.appendChild(selectedPiece);
+        selectedPiece = null;
+        checkPuzzleComplete();
+      }
+    };
+
+    board.appendChild(slot);
+  }
+
+  // 🧩 piese
+  pieces.forEach(i=>{
+    const piece = document.createElement("div");
+    piece.className = "piece";
+
+    piece.style.backgroundImage = `url(${currentPuzzleImage})`;
+
+    const x = (i % 4) * 100;
+    const y = Math.floor(i / 4) * 100;
+
+    piece.style.backgroundSize = "400% 300%";
+    piece.style.backgroundPosition = `${x}% ${y}%`;
+
+    piece.dataset.piece = i;
+
+    piece.onclick = ()=>{
+      selectedPiece = piece;
+    };
+
+    piecesContainer.appendChild(piece);
+  });
+
+}
 </script>
 </body>
 </html>
