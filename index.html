@@ -1896,14 +1896,20 @@ piece.style.backgroundSize = "400% 400%";
 
     piece.dataset.piece = i;
 
-    piece.onclick = ()=>{
-      selectedPiece = piece;
-    };
+ piece.onclick = ()=>{
 
-    piecesContainer.appendChild(piece);
-  });
+  // 🔥 dacă piesa e deja pe board → o trimitem înapoi jos
+  if(piece.parentElement.classList.contains("slot")){
+    
+    document.getElementById("puzzlePieces").appendChild(piece);
+    selectedPiece = null;
+    return;
+  }
 
-}
+  // 🔥 altfel o selectăm normal
+  selectedPiece = piece;
+
+};
 
 function loadPuzzleSelector(){
 
