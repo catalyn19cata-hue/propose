@@ -1904,6 +1904,28 @@ piece.style.backgroundSize = "400% 400%";
   });
 
 }
+
+function loadPuzzleSelector(){
+
+  const selector = document.getElementById("puzzleSelector");
+  selector.innerHTML = "";
+
+  puzzleImages.forEach(img => {
+
+    const image = document.createElement("img");
+    image.src = img;
+
+    image.onclick = () => {
+      currentPuzzleImage = img;
+      loadPuzzle();
+    };
+
+    selector.appendChild(image);
+
+  });
+
+}
+  
 </script>
 </body>
 </html>
