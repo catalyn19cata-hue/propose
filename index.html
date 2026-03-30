@@ -490,7 +490,7 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 #puzzleBoard{
   width:90vw;
   max-width:320px;   /* dimensiune maximă pe desktop */
-  aspect-ratio:4/3;  /* IMPORTANT pentru puzzle 4x3 */
+  aspect-ratio:1/1;  /* IMPORTANT pentru puzzle 4x3 */
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:3px;
@@ -1852,7 +1852,8 @@ function openEnvelope(){
 
   let pieces = [];
 
-  for(let i=0;i<12;i++){
+  for(let i=0;i<16;i++){
+  
     pieces.push(i);
   }
 
@@ -1860,7 +1861,7 @@ function openEnvelope(){
   pieces.sort(()=>Math.random()-0.5);
 
   // 🔲 sloturi goale (tabla)
-  for(let i=0;i<12;i++){
+  for(let i=0;i<16;i++){
     const slot = document.createElement("div");
     slot.className = "piece slot";
 
@@ -1883,11 +1884,10 @@ function openEnvelope(){
     piece.className = "piece";
 
     piece.style.backgroundImage = `url(${currentPuzzleImage})`;
+const x = (i % 4) * 100;
+const y = Math.floor(i / 4) * 100;
 
-    const x = (i % 4) * 100;
-    const y = Math.floor(i / 4) * 100;
-
-    piece.style.backgroundSize = "400% 300%";
+piece.style.backgroundSize = "400% 400%";
     piece.style.backgroundPosition = `${x}% ${y}%`;
 
     piece.dataset.piece = i;
