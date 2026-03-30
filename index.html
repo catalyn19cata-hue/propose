@@ -1888,11 +1888,11 @@ function openEnvelope(){
     piece.className = "piece";
 
     piece.style.backgroundImage = `url(${currentPuzzleImage})`;
-const x = (i % 4) * 100;
-const y = Math.floor(i / 4) * 100;
+const x = (i % 4) * 33.33;
+const y = Math.floor(i / 4) * 33.33;
 
 piece.style.backgroundSize = "400% 400%";
-    piece.style.backgroundPosition = `${x}% ${y}%`;
+   piece.style.backgroundPosition = `${x}% ${y}%`;
 
     piece.dataset.piece = i;
 
