@@ -1885,7 +1885,7 @@ function openEnvelope(){
 
     piece.style.backgroundImage = `url(${currentPuzzleImage})`;
 const x = (i % 4) * 100;
-const y = Math.floor(i / 4) * 100;
+const y = Math.floor(i / 4) * 100 * (4/3);
 
 piece.style.backgroundSize = "400% 400%";
     piece.style.backgroundPosition = `${x}% ${y}%`;
