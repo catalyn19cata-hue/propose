@@ -680,6 +680,20 @@ button:hover{
   font-size:0.6em;
   vertical-align:middle;
 }
+
+#puzzlePieces{
+  width:90vw;
+  max-width:320px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  margin:20px auto;
+}
+
+.slot{
+  background:rgba(255,255,255,0.2);
+  border:1px dashed white;
+}
   
   </style> 
 </head>
@@ -855,7 +869,9 @@ button:hover{
    <h2>🧩 Puzzle 4x3</h2>
 
 <div id="puzzleBoard"></div>
-
+<h3>Piese</h3>
+<div id="puzzlePieces"></div>
+    
 <h3 style="margin-top:20px;">Alege poza</h3>
 <div id="puzzleSelector"></div>
   </div>
@@ -1604,9 +1620,6 @@ document.getElementById("effectsLayer").appendChild(note);
   setTimeout(()=>note.remove(),5000);
 }
 
- let puzzle = [];
-let emptyIndex = 8;
-let puzzleSolved = false;
   const puzzleImages = [
   "dada.jpeg",
   "roma14.jpeg",
@@ -1620,153 +1633,10 @@ let puzzleSolved = false;
 
 let currentPuzzleImage = puzzleImages[0];
   
-function loadPuzzle(){
 
-  const board = document.getElementById("puzzleBoard");
-  board.innerHTML = "";
-
-  const rows = 3;
-  const cols = 4;
-  const totalPieces = rows * cols;
-
-  puzzle = [];
-
-  for(let i = 0; i < totalPieces - 1; i++){
-    puzzle.push(i);
-  }
-
-  // piesa goală
-  puzzle.push(totalPieces - 1);
-
-  puzzle.sort(() => Math.random() - 0.5);
-
-  emptyIndex = puzzle.indexOf(totalPieces - 1);
-
-  puzzleSolved = false;
-
-  drawPuzzle();
-}
- function drawPuzzle(){
-
-  const board = document.getElementById("puzzleBoard");
-  board.innerHTML = "";
-
-  const rows = 3;
-  const cols = 4;
-
-  const boardWidth = board.clientWidth;
-  const boardHeight = board.clientHeight;
-
-  const pieceWidth = boardWidth / cols;
-  const pieceHeight = boardHeight / rows;
-
-  puzzle.forEach((value,index)=>{
-
-    const piece = document.createElement("div");
-
-    if(value === rows*cols - 1){
-      piece.style.background = "transparent";
-    } else {
-
-      piece.className = "piece";
-
-      piece.style.backgroundImage = "url('" + currentPuzzleImage + "')";
-
-      piece.style.backgroundSize =
-        boardWidth + "px " + boardHeight + "px";
-
-      const row = Math.floor(value / cols);
-      const col = value % cols;
-
-      piece.style.backgroundPosition =
-        `-${col * pieceWidth}px -${row * pieceHeight}px`;
-    }
-
-    piece.onclick = ()=>movePiece(index);
-
-    board.appendChild(piece);
-
-  });
-
-}
 function movePiece(index){
 
-  const rows = 3;
-  const cols = 4;
 
-  const row = Math.floor(index / cols);
-  const col = index % cols;
-
-  const emptyRow = Math.floor(emptyIndex / cols);
-  const emptyCol = emptyIndex % cols;
-
-  const distance =
-    Math.abs(row - emptyRow) +
-    Math.abs(col - emptyCol);
-
-  if(distance === 1 && !puzzleSolved){
-
-    [puzzle[index],puzzle[emptyIndex]] =
-    [puzzle[emptyIndex],puzzle[index]];
-
-    emptyIndex = index;
-
-    drawPuzzle();
-
-    // 🔥 AICI pui codul de verificare
-    if(checkPuzzleComplete() && !puzzleSolved){
-
-      puzzleSolved = true;
-
-      setTimeout(()=>{
-
-        showPopup("🎉😘");
-
-        const board = document.getElementById("puzzleBoard");
-        board.innerHTML = `
-          <div style="
-            grid-column: span 4;
-            text-align:center;
-            font-size:22px;
-            font-family:'Dancing Script', cursive;
-            color:white;
-            margin-top:20px;
-          ">
-            Felicitări iubire!!!💖
-          </div>
-        `;
-
-      },300);
-
-    }
-  }
-}
-  function checkPuzzleComplete(){
-
-  for(let i=0;i<puzzle.length;i++){
-    if(puzzle[i] !== i){
-      return false;
-    }
-  }
-
-  return true;
-}
-function selectPiece(piece){
-
-  if(!firstSelected){
-    firstSelected = piece;
-    piece.style.outline = "3px solid yellow";
-  } else {
-
-    // schimbăm între ele
-    const temp = firstSelected.style.backgroundPosition;
-    firstSelected.style.backgroundPosition = piece.style.backgroundPosition;
-    piece.style.backgroundPosition = temp;
-
-    firstSelected.style.outline = "";
-    firstSelected = null;
-  }
-}
 
 function loadPuzzleSelector(){
 
@@ -1974,6 +1844,53 @@ function openEnvelope(){
 "💞 Tu ești motivul pentru care mă simt complet, fericit și iubit, și fiecare clipă fără tine mă face să prețuiesc și mai mult fiecare moment petrecut împreună.",
 
 ];
+
+   pieces.forEach(i=>{
+    const piece = document.createElement("div");
+    piece.className = "piece";
+    piece.draggable = true;
+    piece.dataset.piece = i;
+
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+
+    piece.style.backgroundImage = `url('${currentPuzzleImage}')`;
+    piece.style.backgroundSize = `${cols*100}% ${rows*100}%`;
+    piece.style.backgroundPosition =
+      `${(col/(cols-1))*100}% ${(row/(rows-1))*100}%`;
+
+    piece.ondragstart = e=>{
+      e.dataTransfer.setData("text", i);
+    };
+
+    piecesContainer.appendChild(piece);
+  });
+}
+
+  function checkPuzzleComplete(){
+
+  const slots = document.querySelectorAll(".slot");
+
+  let correct = true;
+
+  slots.forEach((slot, index)=>{
+    const piece = slot.firstChild;
+
+    if(!piece || piece.dataset.piece != index){
+      correct = false;
+    }
+  });
+
+  if(correct){
+    showPopup("🎉😘");
+
+    document.getElementById("puzzleBoard").innerHTML = `
+      <div style="grid-column:span 4; text-align:center;">
+        Felicitări iubire!!! 💖
+      </div>
+    `;
+  }
+}
 </script>
 </body>
 </html>
