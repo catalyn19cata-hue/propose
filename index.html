@@ -1861,32 +1861,7 @@ function openEnvelope(){
     pieces.push(i);
   }
 
-    function loadPuzzleSelector(){
-
-  const selector = document.getElementById("puzzleSelector");
-  selector.innerHTML = "";
-
-  puzzleImages.forEach(img => {
-
-    const image = document.createElement("img");
-    image.src = img;
-
-    image.onclick = () => {
-      currentPuzzleImage = img;
-
-      document.querySelectorAll("#puzzleSelector img")
-        .forEach(i => i.style.border = "2px solid transparent");
-
-      image.style.border = "2px solid white";
-
-      loadPuzzle();
-    };
-
-    selector.appendChild(image);
-
-  });
-
-}
+   
   // amestecăm piesele
   pieces.sort(()=>Math.random()-0.5);
 
@@ -1936,9 +1911,36 @@ piece.style.backgroundSize = "400% 400%";
   selectedPiece = piece;
 
 };
+
+     function loadPuzzleSelector(){
+
+  const selector = document.getElementById("puzzleSelector");
+  selector.innerHTML = "";
+
+  puzzleImages.forEach(img => {
+
+    const image = document.createElement("img");
+    image.src = img;
+
+    image.onclick = () => {
+      currentPuzzleImage = img;
+
+      document.querySelectorAll("#puzzleSelector img")
+        .forEach(i => i.style.border = "2px solid transparent");
+
+      image.style.border = "2px solid white";
+
+      loadPuzzle();
+    };
+
+    selector.appendChild(image);
+
+  });
+
+}
 piecesContainer.appendChild(piece);
 });
-
+  
 </script>
 </body>
 </html>
