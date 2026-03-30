@@ -1852,7 +1852,7 @@ function openEnvelope(){
 
   let pieces = [];
 
-  for(let i=0;i<16;i++){
+  for(let i=0;i<12;i++){
   
     pieces.push(i);
   }
@@ -1861,7 +1861,7 @@ function openEnvelope(){
   pieces.sort(()=>Math.random()-0.5);
 
   // 🔲 sloturi goale (tabla)
-  for(let i=0;i<16;i++){
+  for(let i=0;i<12;i++){
     const slot = document.createElement("div");
     slot.className = "piece slot";
 
