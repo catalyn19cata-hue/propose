@@ -466,21 +466,10 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 
 #slideImage {
   width: 100%;
-  height: auto;          /* păstrează proporția */
-  max-height: 60vh;      /* să nu ocupe tot ecranul */
   border-radius: 20px;
   transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
   opacity: 1;
-  object-fit: cover;     /* păstrează aspect ratio 16:9 fără deformare */
-  display: block;
-  margin: 0 auto;
-}
-
-/* pe telefoane verticale mici */
-@media (max-width: 768px) {
-  #slideImage {
-    height: 50vh;          /* limitează înălțimea pe vertical */
-  }
+  transform: scale(1.1); /* +10% mai mare */
 }
 
 #slideMessage{
