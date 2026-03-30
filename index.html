@@ -1941,26 +1941,13 @@ function loadPuzzleSelector(){
     const image = document.createElement("img");
     image.src = img;
 
-    image.onclick = () => {
-      currentPuzzleImage = img;
-      loadPuzzle();
-    };
+
 
     selector.appendChild(image);
 
   });
 
 }
-  image.onclick = () => {
-  currentPuzzleImage = img;
-
-  document.querySelectorAll("#puzzleSelector img")
-    .forEach(i => i.style.border = "2px solid transparent");
-
-  image.style.border = "2px solid white";
-
-  loadPuzzle();
-};
 </script>
 </body>
 </html>
