@@ -887,6 +887,7 @@ let firstSelected = null;
 let musicInterval = null;
 let musicHeartInterval = null;
   let musicNoteInterval = null;
+  let selectedPiece = null;
   
     const specialDates = [
   {date:"2024-02-05", text:"💞 Ziua în care ne-am cunoscut"},
@@ -1652,25 +1653,20 @@ function loadPuzzle(){
     const slot = document.createElement("div");
     slot.className = "slot";
 
-    slot.ondragover = e => e.preventDefault();
-
-    slot.ondrop = e=>{
-      const draggedIndex = e.dataTransfer.getData("text");
-      const piece = document.querySelector(`[data-piece='${draggedIndex}']`);
-
-      if(slot.children.length === 0){
-        slot.appendChild(piece);
-        checkPuzzleComplete();
-      }
-    };
-
+slot.onclick = ()=>{
+  if(selectedPiece && slot.children.length === 0){
+    slot.appendChild(selectedPiece);
+    selectedPiece = null;
+    checkPuzzleComplete();
+  }
+};
     board.appendChild(slot);
   }
 
   pieces.forEach(i=>{
     const piece = document.createElement("div");
     piece.className = "piece";
-    piece.draggable = true;
+
     piece.dataset.piece = i;
 
     const row = Math.floor(i / cols);
@@ -1681,15 +1677,23 @@ function loadPuzzle(){
     piece.style.backgroundPosition =
       `${(col/(cols-1))*100}% ${(row/(rows-1))*100}%`;
 
-    piece.ondragstart = e=>{
-      e.dataTransfer.setData("text", i);
-    };
 
     piecesContainer.appendChild(piece);
   });
 
 }
+piece.onclick = ()=>{
 
+  // reset highlight la toate piesele
+  document.querySelectorAll(".piece").forEach(p=>{
+    p.style.outline = "none";
+  });
+
+  selectedPiece = piece;
+
+  // evidențiere piesă selectată
+  piece.style.outline = "3px solid white";
+};
 function loadPuzzleSelector(){
 
   const container = document.getElementById("puzzleSelector");
