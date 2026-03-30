@@ -465,11 +465,11 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 }
 
 #slideImage{
-  width:100%;
-  aspect-ratio:16/9;   /* 🔥 asta e cheia */
-  object-fit:contain;  /* NU mai taie poza */
+  width:110%;          /* +10% mai mare decât containerul */
+  max-width:none;      /* ca să nu fie limitată */
   border-radius:20px;
-  transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
+  opacity:1;
 }
 
 #slideMessage{
