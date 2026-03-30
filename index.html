@@ -1857,15 +1857,11 @@ function openEnvelope(){
   let pieces = [];
 
   for(let i=0;i<12;i++){
-  
     pieces.push(i);
   }
 
-   
-  // amestecăm piesele
   pieces.sort(()=>Math.random()-0.5);
 
-  // 🔲 sloturi goale (tabla)
   for(let i=0;i<12;i++){
     const slot = document.createElement("div");
     slot.className = "piece slot";
@@ -1883,34 +1879,33 @@ function openEnvelope(){
     board.appendChild(slot);
   }
 
-  // 🧩 piese
   pieces.forEach(i=>{
     const piece = document.createElement("div");
     piece.className = "piece";
 
     piece.style.backgroundImage = `url(${currentPuzzleImage})`;
-const x = (i % 4) * 33.33;
-const y = Math.floor(i / 4) * 33.33;
 
-piece.style.backgroundSize = "400% 400%";
-   piece.style.backgroundPosition = `${x}% ${y}%`;
+    const x = (i % 4) * 33.33;
+    const y = Math.floor(i / 4) * 33.33;
+
+    piece.style.backgroundSize = "400% 400%";
+    piece.style.backgroundPosition = `${x}% ${y}%`;
 
     piece.dataset.piece = i;
 
- piece.onclick = ()=>{
+    piece.onclick = ()=>{
+      if(piece.parentElement.classList.contains("slot")){
+        document.getElementById("puzzlePieces").appendChild(piece);
+        selectedPiece = null;
+        return;
+      }
 
-  // 🔥 dacă piesa e deja pe board → o trimitem înapoi jos
-  if(piece.parentElement.classList.contains("slot")){
-    
-    document.getElementById("puzzlePieces").appendChild(piece);
-    selectedPiece = null;
-    return;
-  }
+      selectedPiece = piece;
+    };
 
-  // 🔥 altfel o selectăm normal
-  selectedPiece = piece;
-
-};
+    piecesContainer.appendChild(piece);
+  });
+}
   piecesContainer.appendChild(piece); // ✔ ASTA TREBUIE SĂ EXISTE
 });
    function loadPuzzleSelector(){
