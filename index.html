@@ -1634,64 +1634,7 @@ document.getElementById("effectsLayer").appendChild(note);
 
 let currentPuzzleImage = puzzleImages[0];
 
-function loadPuzzle(){
 
-  const rows = 3;
-  const cols = 4;
-
-  const board = document.getElementById("puzzleBoard");
-  const piecesContainer = document.getElementById("puzzlePieces");
-
-  board.innerHTML = "";
-  piecesContainer.innerHTML = "";
-
-  let pieces = [...Array(rows * cols).keys()];
-
-  pieces.sort(()=>Math.random() - 0.5);
-
-  for(let i=0;i<rows*cols;i++){
-    const slot = document.createElement("div");
-    slot.className = "slot";
-
-slot.onclick = ()=>{
-  if(selectedPiece && slot.children.length === 0){
-    slot.appendChild(selectedPiece);
-    selectedPiece = null;
-    checkPuzzleComplete();
-  }
-};
-    board.appendChild(slot);
-  }
-pieces.forEach(i=>{
-  const piece = document.createElement("div");
-
-
-function loadPuzzleSelector(){
-
-  const container = document.getElementById("puzzleSelector");
-  container.innerHTML = "";
-
-  puzzleImages.forEach(img =>{
-
-    const image = document.createElement("img");
-    image.src = img;
-    image.style.width = "100%";
-    image.style.marginBottom = "10px";
-    image.style.borderRadius = "10px";
-    image.style.cursor = "pointer";
-
-   image.onclick = ()=>{
-
-  currentPuzzleImage = img;
-
-  loadPuzzle(); // regenerează puzzle-ul și îl amestecă
-
-};
-
-    container.appendChild(image);
-  });
-
-}
  function loadCalendar(){
 
   const container = document.getElementById("calendarList");
