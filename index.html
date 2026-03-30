@@ -1911,7 +1911,8 @@ piece.style.backgroundSize = "400% 400%";
   selectedPiece = piece;
 
 };
-
+  piecesContainer.appendChild(piece); // ✔ ASTA TREBUIE SĂ EXISTE
+});
    function loadPuzzleSelector(){
 
   const selector = document.getElementById("puzzleSelector");
