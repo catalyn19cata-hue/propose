@@ -1662,38 +1662,10 @@ slot.onclick = ()=>{
 };
     board.appendChild(slot);
   }
-
-  pieces.forEach(i=>{
-    const piece = document.createElement("div");
-    piece.className = "piece";
-
-    piece.dataset.piece = i;
-
-    const row = Math.floor(i / cols);
-    const col = i % cols;
-
-    piece.style.backgroundImage = `url('${currentPuzzleImage}')`;
-    piece.style.backgroundSize = `${cols*100}% ${rows*100}%`;
-    piece.style.backgroundPosition =
-      `${(col/(cols-1))*100}% ${(row/(rows-1))*100}%`;
+pieces.forEach(i=>{
+  const piece = document.createElement("div");
 
 
-    piecesContainer.appendChild(piece);
-  });
-
-}
-piece.onclick = ()=>{
-
-  // reset highlight la toate piesele
-  document.querySelectorAll(".piece").forEach(p=>{
-    p.style.outline = "none";
-  });
-
-  selectedPiece = piece;
-
-  // evidențiere piesă selectată
-  piece.style.outline = "3px solid white";
-};
 function loadPuzzleSelector(){
 
   const container = document.getElementById("puzzleSelector");
