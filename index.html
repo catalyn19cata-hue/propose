@@ -1633,7 +1633,62 @@ document.getElementById("effectsLayer").appendChild(note);
 
 let currentPuzzleImage = puzzleImages[0];
 
+function loadPuzzle(){
 
+  const rows = 3;
+  const cols = 4;
+
+  const board = document.getElementById("puzzleBoard");
+  const piecesContainer = document.getElementById("puzzlePieces");
+
+  board.innerHTML = "";
+  piecesContainer.innerHTML = "";
+
+  let pieces = [...Array(rows * cols).keys()];
+
+  pieces.sort(()=>Math.random() - 0.5);
+
+  for(let i=0;i<rows*cols;i++){
+    const slot = document.createElement("div");
+    slot.className = "slot";
+
+    slot.ondragover = e => e.preventDefault();
+
+    slot.ondrop = e=>{
+      const draggedIndex = e.dataTransfer.getData("text");
+      const piece = document.querySelector(`[data-piece='${draggedIndex}']`);
+
+      if(slot.children.length === 0){
+        slot.appendChild(piece);
+        checkPuzzleComplete();
+      }
+    };
+
+    board.appendChild(slot);
+  }
+
+  pieces.forEach(i=>{
+    const piece = document.createElement("div");
+    piece.className = "piece";
+    piece.draggable = true;
+    piece.dataset.piece = i;
+
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+
+    piece.style.backgroundImage = `url('${currentPuzzleImage}')`;
+    piece.style.backgroundSize = `${cols*100}% ${rows*100}%`;
+    piece.style.backgroundPosition =
+      `${(col/(cols-1))*100}% ${(row/(rows-1))*100}%`;
+
+    piece.ondragstart = e=>{
+      e.dataTransfer.setData("text", i);
+    };
+
+    piecesContainer.appendChild(piece);
+  });
+
+}
 
 function loadPuzzleSelector(){
 
@@ -1842,27 +1897,6 @@ function openEnvelope(){
 
 ];
 
-   pieces.forEach(i=>{
-    const piece = document.createElement("div");
-    piece.className = "piece";
-    piece.draggable = true;
-    piece.dataset.piece = i;
-
-    const row = Math.floor(i / cols);
-    const col = i % cols;
-
-    piece.style.backgroundImage = `url('${currentPuzzleImage}')`;
-    piece.style.backgroundSize = `${cols*100}% ${rows*100}%`;
-    piece.style.backgroundPosition =
-      `${(col/(cols-1))*100}% ${(row/(rows-1))*100}%`;
-
-    piece.ondragstart = e=>{
-      e.dataTransfer.setData("text", i);
-    };
-
-    piecesContainer.appendChild(piece);
-  });
-}
 
   function checkPuzzleComplete(){
 
