@@ -1066,13 +1066,7 @@ let musicHeartInterval = null;
 ];
 /* NAVIGARE */
 function showSection(id){
-
-if(id === "balloons"){
-  startStars();
-} else {
-  stopStars();
-}
-  
+ 
   if(id==="letter"){
   resetLetter();
 }
@@ -2093,20 +2087,23 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   });
 }
-  
+  function createStar(){
 
-let starInterval = null;
-  function startStars(){
-  if(!starInterval){
-    starInterval = setInterval(createStar, 800);
-  }
-}
+  const star = document.createElement("div");
+  star.classList.add("star");
 
-function stopStars(){
-  if(starInterval){
-    clearInterval(starInterval);
-    starInterval = null;
-  }
+  star.style.left = Math.random()*100 + "vw";
+  star.style.top = Math.random()*100 + "vh";
+
+  // direcție random
+  star.style.setProperty("--x", (Math.random()*40 - 20) + "px");
+  star.style.setProperty("--y", (Math.random()*40 - 20) + "px");
+
+  star.style.animationDuration = (3 + Math.random()*3) + "s";
+
+  document.getElementById("effectsLayer").appendChild(star);
+
+  setTimeout(()=>star.remove(),6000);
 }
 </script>
 </body>
