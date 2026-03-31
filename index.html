@@ -2094,16 +2094,6 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
   });
 }
   
-if(id === "balloons"){
-  if(!starInterval){
-    starInterval = setInterval(createStar, 800);
-  }
-} else {
-  if(starInterval){
-    clearInterval(starInterval);
-    starInterval = null;
-  }
-}
 
 let starInterval = null;
   function startStars(){
