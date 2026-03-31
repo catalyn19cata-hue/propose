@@ -1665,7 +1665,7 @@ let musicPlaying = true;
 function startMusicSection(){
 
   clearInterval(musicNoteInterval);
-musicNoteInterval = setInterval(createMusicNote, 1000);
+musicNoteInterval = setInterval(createMusicNote, 2000);
 
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
@@ -1680,7 +1680,7 @@ musicNoteInterval = setInterval(createMusicNote, 1000);
 
   // 🔥 PORNIM INIMILE ÎN MUZICĂ
   clearInterval(musicHeartInterval);
-  musicHeartInterval = setInterval(createMusicHeart, 1500);
+  musicHeartInterval = setInterval(createMusicHeart, 2500);
 }
 function nextMusicSlide(){
 
