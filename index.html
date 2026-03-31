@@ -1259,15 +1259,8 @@ function loadQuiz(){
 
       let btn=document.createElement("button");
       btn.innerText=ans;
-
-btn.onclick=()=>{
-
-  if(btn.classList.contains("selected-answer")){
-    btn.classList.remove("selected-answer");
-  }else{
-    btn.classList.add("selected-answer");
-  }
-
+btn.onclick = () => {
+  btn.classList.toggle("selected-answer");
 };
 
       answersDiv.appendChild(btn);
