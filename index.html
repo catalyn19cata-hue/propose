@@ -8,6 +8,21 @@
 
 <style>
 
+@keyframes twinkle{
+  0%{
+    opacity:0.3;
+    transform:scale(0.8);
+  }
+  50%{
+    opacity:1;
+    transform:scale(1.4);
+  }
+  100%{
+    opacity:0.3;
+    transform:scale(0.8);
+  }
+}
+  
 .popup{
   position:fixed;
   top:50%;
@@ -442,14 +457,22 @@ transform:translateY(0);
   100%{ transform:scale(1); }
 }
 
-.balloon{
-  width:160px;
-  height:200px;
-  border-radius:50% 50% 45% 45%;
-  opacity:0.9;
-position:absolute;    /* 🔥 SCHIMBAT */
+.star{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  position:absolute;
+  background:white;
+
+  box-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #00bfff,
+    0 0 40px #00bfff;
+
+  animation: twinkle 2s infinite ease-in-out;
+
   cursor:pointer;
-  box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
 
 #balloonContainer{
@@ -460,7 +483,7 @@ position:relative;
 overflow:hidden;
 margin:20px auto;
 
-background: radial-gradient(circle at center, #050510, #000000);
+background: radial-gradient(circle at center, #0a0a1f, #000000);
 backdrop-filter:blur(10px);
 border:2px solid rgba(255,255,255,0.6);
 border-radius:25px;
@@ -1387,8 +1410,12 @@ function createBalloons(){
 for(let i=0;i<balloonData.length;i++){
 
   const b=document.createElement("div");
-  b.className="balloon";
+  b.className="star";
+b.style.left = Math.random()*90 + "%";
+b.style.top = Math.random()*90 + "%";
 
+// 👇 apoi animația diferită
+b.style.animationDelay = (Math.random()*2)+"s";
   b.style.width="45px";
   b.style.height="60px";
   b.style.background=`hsl(${Math.random()*360},80%,60%)`;
@@ -1400,20 +1427,7 @@ const rect = container.getBoundingClientRect();
 let centerX = Math.random() * rect.width;
 let centerY = Math.random() * rect.height;
 
-function move(){
-  angle += 0.015; // viteza rotației (mai mic = mai lent)
 
-let x = centerX + Math.cos(angle) * radius;
-let y = centerY + Math.sin(angle) * radius;
-x = Math.max(0, Math.min(x, rect.width - 50));
-y = Math.max(0, Math.min(y, rect.height - 70));
-  b.style.left = x + "px";
-  b.style.top = y + "px";
-
-  requestAnimationFrame(move);
-}
-
-move();
 
   // 🔥 AICI legăm poza de balon
   b.onclick=()=>{
@@ -1956,7 +1970,14 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   });
 }
-  
+  b.onclick = ()=>{
+  b.style.transform = "scale(2)";
+  b.style.boxShadow = "0 0 60px white";
+
+  setTimeout(()=>{
+    // deschide poza
+  },200);
+};
 </script>
 </body>
 </html>
