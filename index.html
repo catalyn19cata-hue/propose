@@ -1405,38 +1405,36 @@ function createBalloons(){
 
   document.getElementById("photoView").style.display="none";
 
-  // 🔽 AICI vine codul nou
+  for(let i=0;i<balloonData.length;i++){
 
-for(let i=0;i<balloonData.length;i++){
+    const b=document.createElement("div");
+    b.className="star";
 
-  const b=document.createElement("div");
-  b.className="star";
-b.style.left = Math.random()*90 + "%";
-b.style.top = Math.random()*90 + "%";
+    // poziție random
+    b.style.left = Math.random()*90 + "%";
+    b.style.top = Math.random()*90 + "%";
 
-// 👇 apoi animația diferită
-b.style.animationDelay = (Math.random()*2)+"s";
-  b.style.width="45px";
-  b.style.height="60px";
-  b.style.background=`hsl(${Math.random()*360},80%,60%)`;
+    // delay animație
+    b.style.animationDelay = (Math.random()*2)+"s";
 
+    // click
+    b.onclick=()=>{
+      b.style.transform = "scale(2)";
+      b.style.boxShadow = "0 0 60px white";
 
+      setTimeout(()=>{
+        document.getElementById("balloonContainer").style.display="none";
 
-  // 🔥 AICI legăm poza de balon
-  b.onclick=()=>{
+        const photoView=document.getElementById("photoView");
+        photoView.style.display="block";
 
-    document.getElementById("balloonContainer").style.display="none";
+        photoView.querySelector("img").src=balloonData[i].img;
+        photoView.querySelector("p").innerText=balloonData[i].text;
+      },200);
+    };
 
-    const photoView=document.getElementById("photoView");
-    photoView.style.display="block";
-
-    photoView.querySelector("img").src=balloonData[i].img;
-    photoView.querySelector("p").innerText=balloonData[i].text;
-  };
-
-  container.appendChild(b);
-}
-
+    container.appendChild(b);
+  }
 }
 
 function backToBalloons(){
