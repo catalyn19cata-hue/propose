@@ -1255,23 +1255,12 @@ function loadQuiz(){
       let btn=document.createElement("button");
       btn.innerText=ans;
 
-      btn.onclick=()=>{
-
-        Array.from(answersDiv.querySelectorAll("button"))
-          .forEach(b=>b.style.background="");
-
-        btn.style.background="#ffffff55";
-
-    btn.onclick=()=>{
+  btn.onclick=()=>{
 
   Array.from(answersDiv.querySelectorAll("button"))
     .forEach(b=>b.style.background="");
 
   btn.style.background="green";
-
-  if(i===q.c){
-    showPopup("😘");
-  }
 
 };
 
