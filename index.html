@@ -13,24 +13,52 @@
   width:14px;
   height:14px;
 
-  .magic-star
-  background: radial-gradient(circle, #ffffff 0%, #ffd6ff 35%, #ff4dc4 55%, transparent 75%);
+  background: radial-gradient(circle,
+    #ffffff 0%,
+    #ffd6ff 25%,
+    #ff4dc4 45%,
+    rgba(255,0,200,0.4) 60%,
+    transparent 80%
+  );
 
-  /* 🔥 formă organică, imperfectă */
-  border-radius: 55% 65% 50% 70% / 60% 50% 70% 55%;
+   opacity:0.6;
+    filter: blur(0.8px);
+  }
+}
 
-  filter: blur(0.4px);
+@keyframes starFlicker{
+  0%, 100%{
+    box-shadow:
+      0 0 6px #fff,
+      0 0 15px #ffb3ec,
+      0 0 30px #ff4dc4,
+      0 0 60px #ff00cc;
+  }
+  50%{
+    box-shadow:
+      0 0 15px #fff,
+      0 0 35px #ffccff,
+      0 0 60px #ff4dc4,
+      0 0 100px #ff00cc;
+  }
+}
+  
+  border-radius: 60% 40% 55% 65% / 55% 65% 45% 60%;
+
+  filter: blur(0.5px);
 
   box-shadow:
-    0 0 8px #fff,
-    0 0 18px #ffb3ec,
-    0 0 35px #ff4dc4,
+    0 0 6px #fff,
+    0 0 15px #ffb3ec,
+    0 0 30px #ff4dc4,
     0 0 60px #ff00cc;
 
-  opacity:0.85;
+  opacity:0.9;
   cursor:pointer;
 
-  animation: starPulse 2.2s ease-in-out infinite;
+  animation:
+    starPulse 2s ease-in-out infinite,
+    starFlicker 3s infinite;
 
   transition:0.3s;
 }
@@ -1488,6 +1516,9 @@ b.classList.add("magic-star");
   b.style.transform = "scale(2.5)";
   b.style.filter = "brightness(2.5)";
   b.style.boxShadow = "0 0 80px #fff, 0 0 120px #ff00cc";
+     b.style.animationDuration = (1.5 + Math.random()*2) + "s";
+b.style.opacity = 0.5 + Math.random()*0.5;
+b.style.transform = `scale(${0.7 + Math.random()*0.6})`;
 
       setTimeout(()=>{
         document.getElementById("balloonContainer").style.display="none";
