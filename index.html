@@ -1067,6 +1067,12 @@ let musicHeartInterval = null;
 /* NAVIGARE */
 function showSection(id){
 
+if(id === "balloons"){
+  startStars();
+} else {
+  stopStars();
+}
+  
   if(id==="letter"){
   resetLetter();
 }
@@ -1105,7 +1111,7 @@ function showSection(id){
 }
 
 function goBack(){
-
+stopStars();
   if(musicNoteInterval){
   clearInterval(musicNoteInterval);
   musicNoteInterval = null;
@@ -2087,13 +2093,26 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   });
 }
-    setInterval(createStar, 800);
   
 if(id === "balloons"){
   if(!starInterval){
     starInterval = setInterval(createStar, 800);
   }
 } else {
+  if(starInterval){
+    clearInterval(starInterval);
+    starInterval = null;
+  }
+}
+
+let starInterval = null;
+  function startStars(){
+  if(!starInterval){
+    starInterval = setInterval(createStar, 800);
+  }
+}
+
+function stopStars(){
   if(starInterval){
     clearInterval(starInterval);
     starInterval = null;
