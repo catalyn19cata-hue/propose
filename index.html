@@ -1977,33 +1977,18 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   });
 }
-
-
-function createStar(){
-
-  const star = document.createElement("div");
-  star.classList.add("star");
-
-  // poziție random pe ecran
-  star.style.left = Math.random() * 100 + "vw";
-  star.style.top = Math.random() * 100 + "vh";
-
-  // direcție random (IMPORTANT 🔥)
-  const moveX = (Math.random() - 0.5) * 200;
-  const moveY = (Math.random() - 0.5) * 200;
-
-  star.style.setProperty("--x", moveX + "px");
-  star.style.setProperty("--y", moveY + "px");
-
-  // durată random
-  star.style.animationDuration = (4 + Math.random() * 4) + "s";
-
-  document.getElementById("effectsLayer").appendChild(star);
-
-  setTimeout(()=>star.remove(),8000);
-}
     setInterval(createStar, 300);
-
+  
+if(id === "balloons"){
+  if(!starInterval){
+    starInterval = setInterval(createStar, 300);
+  }
+} else {
+  if(starInterval){
+    clearInterval(starInterval);
+    starInterval = null;
+  }
+}
 </script>
 </body>
 </html>
