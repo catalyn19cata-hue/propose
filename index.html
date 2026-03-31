@@ -8,6 +8,18 @@
 
 <style>
 
+  @keyframes starPulse{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.4);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 .magic-star{
   position:absolute;
   width:14px;
@@ -21,40 +33,16 @@
     transparent 80%
   );
 
-   opacity:0.6;
-    filter: blur(0.8px);
-  }
-}
+  opacity:0.6;
+  filter: blur(0.8px);
 
-@keyframes starFlicker{
-  0%, 100%{
-    box-shadow:
-      0 0 6px #fff,
-      0 0 15px #ffb3ec,
-      0 0 30px #ff4dc4,
-      0 0 60px #ff00cc;
-  }
-  50%{
-    box-shadow:
-      0 0 15px #fff,
-      0 0 35px #ffccff,
-      0 0 60px #ff4dc4,
-      0 0 100px #ff00cc;
-  }
-}
-  
   border-radius: 60% 40% 55% 65% / 55% 65% 45% 60%;
-
-  filter: blur(0.5px);
 
   box-shadow:
     0 0 6px #fff,
     0 0 15px #ffb3ec,
     0 0 30px #ff4dc4,
     0 0 60px #ff00cc;
-
-  opacity:0.9;
-  cursor:pointer;
 
   animation:
     starPulse 2s ease-in-out infinite,
