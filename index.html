@@ -8,6 +8,20 @@
 
 <style>
 
+  
+#balloonContainer div{
+  position:absolute;
+  font-size:28px;
+  cursor:pointer;
+
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffccff,
+    0 0 20px #ff66cc,
+    0 0 40px #ff00cc;
+
+  transition:0.3s;
+}
   @keyframes floatStar{
   0%{
     transform: translate(0, 0);
@@ -1424,7 +1438,8 @@ function createBalloons(){
   for(let i=0;i<balloonData.length;i++){
 
     const b=document.createElement("div");
-   b.innerText = "★";
+ const icons = ["✨","💫","⭐","💖"];
+b.innerText = icons[Math.floor(Math.random()*icons.length)];
 
     // poziție random
     b.style.left = Math.random()*90 + "%";
@@ -1434,9 +1449,9 @@ function createBalloons(){
    b.style.animationDelay = (Math.random()*4)+"s";
 
     // click
-    b.onclick=()=>{
-      b.style.transform = "scale(2)";
-      b.style.boxShadow = "0 0 60px white";
+   b.onclick=()=>{
+  b.style.transform = "scale(2)";
+  b.style.filter = "brightness(2)";
 
       setTimeout(()=>{
         document.getElementById("balloonContainer").style.display="none";
