@@ -13,7 +13,7 @@
     transform: scale(1);
   }
   50%{
-    transform: scale(1.4);
+    transform: scale(1.2);
   }
   100%{
     transform: scale(1);
@@ -22,33 +22,32 @@
 
 .magic-star{
   position:absolute;
-  width:14px;
-  height:14px;
+  width:10px;
+  height:10px;
 
   background: radial-gradient(circle,
     #ffffff 0%,
-    #e6f7ff 30%,
-    #b3ecff 50%,
-    rgba(0,200,255,0.3) 70%,
-    transparent 85%
+    #ccf5ff 40%,
+    transparent 80%
   );
 
   border-radius:50%;
 
-  opacity:0.9;
-  filter: blur(0.5px);
+  opacity:0.85;
 
+  /* 🔥 MULT mai light */
   box-shadow:
     0 0 6px #ffffff,
-    0 0 15px #ccf5ff,
-    0 0 30px #66e0ff,
-    0 0 60px #00ccff;
+    0 0 12px #66e0ff;
+
+  /* 🔥 fără blur (mare win de performanță) */
+  filter:none;
 
   animation:
-    starPulse 1.8s ease-in-out infinite,
-    starFlicker 2.5s infinite;
+    starPulse 2s ease-in-out infinite,
+    starFlicker 3s infinite;
 
-  transition:0.3s;
+  will-change: transform, opacity;
 }
 
 @keyframes starFloat{
@@ -2062,11 +2061,11 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   });
 }
-    setInterval(createStar, 300);
+    setInterval(createStar, 800);
   
 if(id === "balloons"){
   if(!starInterval){
-    starInterval = setInterval(createStar, 300);
+    starInterval = setInterval(createStar, 800);
   }
 } else {
   if(starInterval){
