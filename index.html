@@ -2110,6 +2110,10 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
   setTimeout(()=>star.remove(),6000);
 }
+
+  function stopStars(){
+  document.querySelectorAll(".star").forEach(s => s.remove());
+}
 </script>
 </body>
 </html>
