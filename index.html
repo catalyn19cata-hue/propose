@@ -1300,9 +1300,30 @@ function loadQuiz(){
     q.a.forEach((ans,i)=>{
 
       let btn=document.createElement("button");
-      btn.innerText=ans;
-btn.onclick = () => {
-  btn.classList.toggle("selected-answer");
+ btn.innerText=ans;
+
+  // 🔥 RESTORE selection
+  if(userAnswers[q.q] === i){
+    btn.classList.add("selected-answer");
+  }
+
+  btn.onclick = () => {
+
+    userAnswers[q.q] = i;
+
+    answersDiv.querySelectorAll("button").forEach(b=>{
+      b.classList.remove("selected-answer");
+    });
+
+    btn.classList.add("selected-answer");
+  };
+
+  answersDiv.appendChild(btn);
+
+});
+
+  // marcăm doar pe cel ales
+  btn.classList.add("selected-answer");
 };
 
       answersDiv.appendChild(btn);
