@@ -8,6 +8,18 @@
 
 <style>
 
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:100px;
+  display:none;
+
+  z-index:9999;        /* 🔥 FOARTE IMPORTANT */
+  pointer-events:none; /* să nu blocheze click */
+}
+  
   #puzzleBoard .slot{
   aspect-ratio:1/1;
 }
