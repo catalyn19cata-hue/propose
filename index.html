@@ -1302,7 +1302,7 @@ function loadQuiz(){
     let answersDiv=document.createElement("div");
     answersDiv.className="answers";
 
- q.a.forEach((ans,i)=>{
+q.a.forEach((ans,i)=>{
 
   let btn=document.createElement("button");
   btn.innerText=ans;
@@ -1326,13 +1326,6 @@ function loadQuiz(){
 
 });
 
-  // marcăm doar pe cel ales
-  btn.classList.add("selected-answer");
-};
-
-      answersDiv.appendChild(btn);
-
-    });
 
     div.appendChild(answersDiv);
     container.appendChild(div);
