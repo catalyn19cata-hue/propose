@@ -1104,21 +1104,29 @@ function showSection(id){
   }
 }
 
+Funcția ta trebuie să arate așa:
+
 function goBack(){
-stopStars();
+  stopStars();
+
   if(musicNoteInterval){
-  clearInterval(musicNoteInterval);
-  musicNoteInterval = null;
-}
-  
+    clearInterval(musicNoteInterval);
+    musicNoteInterval = null;
+  }
+
   document.getElementById("menu").style.display="block";
 
   document.querySelectorAll(".section").forEach(s=>{
     s.classList.remove("active");
   });
 
+  // 🔥 AICI adaugi fixul
+  document.getElementById("balloonContainer").style.display = "block";
+  document.getElementById("photoView").style.display = "none";
+
   toggleHeader(true);
-startHearts();
+  startHearts();
+
   const music = document.getElementById("bgMusic");
   if(music){
     music.pause();
@@ -1134,7 +1142,6 @@ startHearts();
     clearInterval(musicHeartInterval);
     musicHeartInterval = null;
   }
-
 }
 window.addEventListener("load", () => {
   toggleHeader(true);   // apare pe Home
