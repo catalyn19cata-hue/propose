@@ -557,7 +557,14 @@ transform:translateY(0);
 
 .quiz-question .answers button{
   flex:1;
-  background:rgba(255,255,255,0.18) !important;
+}
+
+/* 🔥 stil pentru selectat (mai puternic) */
+.quiz-question .answers button.selected-answer{
+  background: #00c853 !important;
+  color: white !important;
+  border: 2px solid #00ff88 !important;
+  box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88 !important;
 }
 
 .timer-circle{
