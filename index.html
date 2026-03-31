@@ -8,6 +8,15 @@
 
 <style>
 
+  @keyframes floatStar{
+  0%{
+    transform: translate(0, 0);
+  }
+  100%{
+    transform: translate(var(--x), var(--y));
+  }
+}
+
 @keyframes twinkle{
   0%{
     opacity:0.4;
@@ -459,33 +468,27 @@ transform:translateY(0);
 
 .star{
   position:absolute;
-  width:20px;
-  height:20px;
+  width:12px;
+  height:12px;
 
-  background:linear-gradient(45deg,#fff,#00bfff);
+  background: radial-gradient(circle, #ffffff 0%, #00bfff 40%, transparent 70%);
 
-  clip-path:polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
+  border-radius:50%;
+
+  filter: blur(0.5px);
 
   box-shadow:
-    0 0 10px #fff,
-    0 0 20px #00bfff,
-    0 0 40px #00bfff;
+    0 0 6px #fff,
+    0 0 12px #00bfff,
+    0 0 25px #00bfff;
 
-  opacity:0.7;
+  opacity:0.8;
 
-  animation: twinkle 3s infinite ease-in-out;
-  cursor:pointer;
+  animation:
+    floatStar linear forwards,
+    twinkle 2.5s ease-in-out infinite;
+
+  pointer-events:none;
 }
 
 #balloonContainer{
@@ -1989,6 +1992,32 @@ setTimeout(()=>{
   b.style.transition = "0.5s";
   b.style.opacity = "1";
 },50);
+
+function createStar(){
+
+  const star = document.createElement("div");
+  star.classList.add("star");
+
+  // poziție random pe ecran
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+
+  // direcție random (IMPORTANT 🔥)
+  const moveX = (Math.random() - 0.5) * 200;
+  const moveY = (Math.random() - 0.5) * 200;
+
+  star.style.setProperty("--x", moveX + "px");
+  star.style.setProperty("--y", moveY + "px");
+
+  // durată random
+  star.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+  document.getElementById("effectsLayer").appendChild(star);
+
+  setTimeout(()=>star.remove(),8000);
+}
+    setInterval(createStar, 300);
+});
 </script>
 </body>
 </html>
