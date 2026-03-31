@@ -459,17 +459,30 @@ transform:translateY(0);
 
 .star{
   position:absolute;
+  width:20px;
+  height:20px;
 
-  color:#ffffff;
-  font-size:18px;
+  background:linear-gradient(45deg,#fff,#00bfff);
 
-  text-shadow:
-    0 0 5px #fff,
+  clip-path:polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+
+  box-shadow:
     0 0 10px #fff,
     0 0 20px #00bfff,
     0 0 40px #00bfff;
 
-  opacity:0.6;
+  opacity:0.7;
 
   animation: twinkle 3s infinite ease-in-out;
   cursor:pointer;
