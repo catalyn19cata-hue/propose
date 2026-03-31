@@ -8,6 +8,43 @@
 
 <style>
 
+.magic-star{
+  position:absolute;
+  width:14px;
+  height:14px;
+
+  .magic-star
+  background: radial-gradient(circle, #ffffff 0%, #ffd6ff 35%, #ff4dc4 55%, transparent 75%);
+
+  /* 🔥 formă organică, imperfectă */
+  border-radius: 55% 65% 50% 70% / 60% 50% 70% 55%;
+
+  filter: blur(0.4px);
+
+  box-shadow:
+    0 0 8px #fff,
+    0 0 18px #ffb3ec,
+    0 0 35px #ff4dc4,
+    0 0 60px #ff00cc;
+
+  opacity:0.85;
+  cursor:pointer;
+
+  animation: starPulse 2.2s ease-in-out infinite;
+
+  transition:0.3s;
+}
+
+@keyframes starFloat{
+  0%{
+    top:0;
+    left:0;
+  }
+  100%{
+    top:-8px;
+    left:6px;
+  }
+}
   
 #balloonContainer div{
   position:absolute;
@@ -504,7 +541,6 @@ transform:translateY(0);
 
   pointer-events:none;
 }
-
 #balloonContainer{
 width:95%;
 max-width:500px;
@@ -1449,8 +1485,9 @@ b.classList.add("magic-star");
 
     // click
    b.onclick=()=>{
-  b.style.transform = "scale(2)";
-  b.style.filter = "brightness(2)";
+  b.style.transform = "scale(2.5)";
+  b.style.filter = "brightness(2.5)";
+  b.style.boxShadow = "0 0 80px #fff, 0 0 120px #ff00cc";
 
       setTimeout(()=>{
         document.getElementById("balloonContainer").style.display="none";
