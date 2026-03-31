@@ -458,24 +458,20 @@ transform:translateY(0);
 }
 
 .star{
-  width:14px;
-  height:14px;
-  border-radius:50%;
   position:absolute;
-  background:white;
 
-  box-shadow:
+  color:#ffffff;
+  font-size:18px;
+
+  text-shadow:
     0 0 5px #fff,
     0 0 10px #fff,
     0 0 20px #00bfff,
     0 0 40px #00bfff;
 
-  opacity:0.4;
-  transform:scale(0.9);
+  opacity:0.6;
 
-  animation: twinkle 4s infinite ease-in-out;
-  animation-fill-mode: both;
-
+  animation: twinkle 3s infinite ease-in-out;
   cursor:pointer;
 }
 
@@ -1412,7 +1408,7 @@ function createBalloons(){
   for(let i=0;i<balloonData.length;i++){
 
     const b=document.createElement("div");
-    b.className="star";
+   b.innerText = "★";
 
     // poziție random
     b.style.left = Math.random()*90 + "%";
