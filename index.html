@@ -7,7 +7,10 @@
 <title>C&C</title>
 
 <style>
-
+  
+.selected-answer{
+  background: green !important;
+}
 
   @keyframes starDrift{
   from{
@@ -1255,8 +1258,13 @@ function loadQuiz(){
       let btn=document.createElement("button");
       btn.innerText=ans;
 
-  btn.onclick=()=>{
-  btn.style.background="green";
+btn.onclick=()=>{
+
+  if(btn.classList.contains("selected-answer")){
+    btn.classList.remove("selected-answer");
+  }else{
+    btn.classList.add("selected-answer");
+  }
 
 };
 
