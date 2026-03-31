@@ -7,6 +7,24 @@
 <title>C&C</title>
 
 <style>
+
+
+#musicProgressContainer{
+  width:100%;
+  height:8px;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  margin-top:15px;
+  overflow:hidden;
+}
+
+#musicProgress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#00ff88,#00c853);
+  box-shadow:0 0 10px #00ff88;
+  transition:width 0.2s linear;
+}
   
 filter: blur(0.3px);
   
@@ -1030,7 +1048,9 @@ button:hover{
 <button onclick="stopMusic()">⏹ Stop</button>
 
 </div>
-
+<div id="musicProgressContainer">
+  <div id="musicProgress"></div>
+</div>
    <audio id="bgMusic" src="muzica.mpeg" loop></audio>
 
   </div>
@@ -2113,6 +2133,30 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
   function stopStars(){
   document.querySelectorAll(".star").forEach(s => s.remove());
 }
+
+const music = document.getElementById("bgMusic");
+const progress = document.getElementById("musicProgress");
+
+music.addEventListener("timeupdate", () => {
+
+  if(music.duration){
+    const percent = (music.currentTime / music.duration) * 100;
+    progress.style.width = percent + "%";
+  }
+
+});
+
+const container = document.getElementById("musicProgressContainer");
+
+container.addEventListener("click", (e) => {
+
+  const rect = container.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+
+  music.currentTime = percent * music.duration;
+
+});
+  
 </script>
 </body>
 </html>
