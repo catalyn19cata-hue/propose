@@ -1438,8 +1438,7 @@ function createBalloons(){
   for(let i=0;i<balloonData.length;i++){
 
     const b=document.createElement("div");
- const icons = ["✨","💫","⭐","💖"];
-b.innerText = icons[Math.floor(Math.random()*icons.length)];
+b.classList.add("magic-star");
 
     // poziție random
     b.style.left = Math.random()*90 + "%";
