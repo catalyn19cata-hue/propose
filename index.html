@@ -490,14 +490,13 @@ box-shadow:0 15px 35px rgba(0,0,0,0.3);
 #puzzleBoard{
   width:90vw;
   max-width:320px;   /* dimensiune maximă pe desktop */
-  aspect-ratio:4/3;  /* IMPORTANT pentru puzzle 4x3 */
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:3px;
   margin:0 auto;     /* 🔥 CENTRARE */
 }
 #puzzlePieces .piece{
-  aspect-ratio:4/3;
+  aspect-ratio:1/1;
 }
 .piece{
   width:100%;
@@ -1885,10 +1884,10 @@ function openEnvelope(){
 
     piece.style.backgroundImage = `url(${currentPuzzleImage})`;
 
-    const x = (i % 4) * 33.33;
-    const y = Math.floor(i / 4) * 33.33;
+   const x = (i % 4) * 100 / 3;   // 0, 33.33, 66.66, 100
+const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
 
-    piece.style.backgroundSize = "400% 400%";
+    piece.style.backgroundSize = "400% 300%";
     piece.style.backgroundPosition = `${x}% ${y}%`;
 
     piece.dataset.piece = i;
