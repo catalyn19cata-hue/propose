@@ -470,7 +470,11 @@ transform:translateY(0);
     0 0 20px #00bfff,
     0 0 40px #00bfff;
 
-animation: twinkle 4s infinite ease-in-out;
+  opacity:0.4;
+  transform:scale(0.9);
+
+  animation: twinkle 4s infinite ease-in-out;
+  animation-fill-mode: both;
 
   cursor:pointer;
 }
@@ -1969,6 +1973,13 @@ const y = Math.floor(i / 4) * 100 / 2; // 0, 50, 100
     // deschide poza
   },200);
 };
+
+  b.style.opacity = "0";
+
+setTimeout(()=>{
+  b.style.transition = "0.5s";
+  b.style.opacity = "1";
+},50);
 </script>
 </body>
 </html>
