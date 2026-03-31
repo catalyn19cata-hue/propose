@@ -1262,15 +1262,18 @@ function loadQuiz(){
 
         btn.style.background="#ffffff55";
 
-        if(i===q.c){
-          showPopup("😘");
-          btn.style.background="green";
-        }else{
-          showPopup("😢");
-          btn.style.background="red";
-        }
+    btn.onclick=()=>{
 
-      };
+  Array.from(answersDiv.querySelectorAll("button"))
+    .forEach(b=>b.style.background="");
+
+  btn.style.background="green";
+
+  if(i===q.c){
+    showPopup("😘");
+  }
+
+};
 
       answersDiv.appendChild(btn);
 
