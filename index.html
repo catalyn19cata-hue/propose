@@ -65,10 +65,8 @@
   position:absolute;
   width:14px;
   height:14px;
-
   border-radius:50%;
 
-  /* 🔥 nucleu + halo */
   background:
     radial-gradient(circle,
       #ffffff 0%,
@@ -79,15 +77,13 @@
 
   opacity:0.9;
 
-  /* glow mai subtil și natural */
- box-shadow:
-  0 0 10px #ffffff,
-  0 0 20px #99e6ff,
-  0 0 40px #33ccff;
+  box-shadow:
+    0 0 10px #ffffff,
+    0 0 20px #99e6ff,
+    0 0 40px #33ccff;
 
-  animation:
-  starTwinkle 4s infinite ease-in-out,
-  starDrift 8s infinite alternate ease-in-out;
+  /* 🔥 DOAR PULSE, FĂRĂ MIȘCARE */
+  animation: starTwinkle 3.5s infinite ease-in-out;
 
   will-change: transform, opacity;
 }
