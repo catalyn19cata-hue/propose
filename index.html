@@ -1300,20 +1300,30 @@ q.a.forEach((ans,i)=>{
   let btn=document.createElement("button");
   btn.innerText=ans;
 
-  if(userAnswers[q.q] === i){
+ // inițializare dacă nu există
+if(!userAnswers[q.q]){
+  userAnswers[q.q] = [];
+}
+
+// dacă deja e selectat
+if(userAnswers[q.q].includes(i)){
+  btn.classList.add("selected-answer");
+}
+
+btn.onclick = () => {
+
+  // dacă există → îl scoatem (toggle OFF)
+  if(userAnswers[q.q].includes(i)){
+    userAnswers[q.q] = userAnswers[q.q].filter(x => x !== i);
+    btn.classList.remove("selected-answer");
+  } 
+  // dacă nu există → îl adăugăm (toggle ON)
+  else{
+    userAnswers[q.q].push(i);
     btn.classList.add("selected-answer");
   }
 
-  btn.onclick = () => {
-
-    userAnswers[q.q] = i;
-
-    answersDiv.querySelectorAll("button").forEach(b=>{
-      b.classList.remove("selected-answer");
-    });
-
-    btn.classList.add("selected-answer");
-  };
+};
 
   answersDiv.appendChild(btn);
 
