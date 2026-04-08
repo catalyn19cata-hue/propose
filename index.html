@@ -1801,6 +1801,10 @@ function pauseMusic(){
 
   clearInterval(musicInterval);
 
+  // 🔥 OPRIM EFECTELE
+  clearInterval(musicNoteInterval);
+  clearInterval(musicHeartInterval);
+
   musicPlaying = false;
 }
 
