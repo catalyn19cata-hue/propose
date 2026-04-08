@@ -1817,6 +1817,10 @@ function stopMusic(){
 
   clearInterval(musicInterval);
 
+  // 🔥 OPRIM EFECTELE
+  clearInterval(musicNoteInterval);
+  clearInterval(musicHeartInterval);
+
   musicIndex = 0;
 
   const image = document.getElementById("slideImage");
