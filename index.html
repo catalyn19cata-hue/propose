@@ -1740,23 +1740,17 @@ let musicPlaying = true;
 
 function startMusicSection(){
 
-  clearInterval(musicNoteInterval);
-musicNoteInterval = setInterval(createMusicNote, 2000);
-
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
   const music = document.getElementById("bgMusic");
+
   music.src = "muzica.mpeg";
 
   musicIndex = 0;
   image.src = musicSlides[0].img;
   message.innerText = musicSlides[0].text;
 
-  musicPlaying = true;
-
-  // 🔥 PORNIM INIMILE ÎN MUZICĂ
-  clearInterval(musicHeartInterval);
-  musicHeartInterval = setInterval(createMusicHeart, 2500);
+  musicPlaying = false; // 🔥 NU pornește automat
 }
 function nextMusicSlide(){
 
