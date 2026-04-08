@@ -1272,18 +1272,28 @@ const questions=[
 ];
 let quizOrder = [];
 let quizIndex = 0;
-function loadQuiz(){
+function loadQuiz(direction = "next"){
 
-  const container=document.getElementById("quizContainer");
-  container.innerHTML="";
+  const container = document.getElementById("quizContainer");
+  container.innerHTML = "";
 
-  // dacă nu avem ordine sau am terminat tot
-  if(quizOrder.length === 0 || quizIndex >= quizOrder.length){
+  // inițializare ordine random o singură dată
+  if(quizOrder.length === 0){
     quizOrder = [...questions].sort(()=>Math.random()-0.5);
     quizIndex = 0;
   }
 
-  // luăm următoarele 7
+  // 👉 CONTROL INDEX
+  if(direction === "next"){
+    quizIndex += 7;
+  } else if(direction === "back"){
+    quizIndex -= 7;
+  }
+
+  // limite
+  if(quizIndex < 0) quizIndex = 0;
+  if(quizIndex >= quizOrder.length) quizIndex = quizOrder.length - 7;
+
   let selected = quizOrder.slice(quizIndex, quizIndex+7);
 
   selected.forEach(q=>{
@@ -1295,55 +1305,59 @@ function loadQuiz(){
     let answersDiv=document.createElement("div");
     answersDiv.className="answers";
 
-q.a.forEach((ans,i)=>{
+    q.a.forEach((ans,i)=>{
 
-  let btn=document.createElement("button");
-  btn.innerText=ans;
+      let btn=document.createElement("button");
+      btn.innerText=ans;
 
- // inițializare dacă nu există
-if(!userAnswers[q.q]){
-  userAnswers[q.q] = [];
-}
+      if(!userAnswers[q.q]){
+        userAnswers[q.q] = [];
+      }
 
-// dacă deja e selectat
-if(userAnswers[q.q].includes(i)){
-  btn.classList.add("selected-answer");
-}
+      if(userAnswers[q.q].includes(i)){
+        btn.classList.add("selected-answer");
+      }
 
-btn.onclick = () => {
+      btn.onclick = () => {
+        if(userAnswers[q.q].includes(i)){
+          userAnswers[q.q] = userAnswers[q.q].filter(x => x !== i);
+          btn.classList.remove("selected-answer");
+        } else {
+          userAnswers[q.q].push(i);
+          btn.classList.add("selected-answer");
+        }
+      };
 
-  // dacă există → îl scoatem (toggle OFF)
-  if(userAnswers[q.q].includes(i)){
-    userAnswers[q.q] = userAnswers[q.q].filter(x => x !== i);
-    btn.classList.remove("selected-answer");
-  } 
-  // dacă nu există → îl adăugăm (toggle ON)
-  else{
-    userAnswers[q.q].push(i);
-    btn.classList.add("selected-answer");
-  }
-
-};
-
-  answersDiv.appendChild(btn);
-
-});
-
+      answersDiv.appendChild(btn);
+    });
 
     div.appendChild(answersDiv);
     container.appendChild(div);
-
   });
 
-  quizIndex += 7;
+  // 🔥 BUTOANE NAVIGARE
+  let navDiv = document.createElement("div");
+  navDiv.style.display = "flex";
+  navDiv.style.gap = "10px";
+  navDiv.style.marginTop = "20px";
 
-  // buton următoarele 7
-  let nextBtn=document.createElement("button");
-  nextBtn.innerText="👉 Următoarele 7";
-  nextBtn.style.marginTop="20px";
-  nextBtn.onclick=loadQuiz;
+  // ⬅ BACK (doar dacă nu e primul)
+  if(quizIndex > 0){
+    let backBtn = document.createElement("button");
+    backBtn.innerText = "⬅ Înapoi";
+    backBtn.onclick = () => loadQuiz("back");
+    navDiv.appendChild(backBtn);
+  }
 
-  container.appendChild(nextBtn);
+  // 👉 NEXT (doar dacă mai sunt întrebări)
+  if(quizIndex + 7 < quizOrder.length){
+    let nextBtn = document.createElement("button");
+    nextBtn.innerText = "👉 Următoarele 7";
+    nextBtn.onclick = () => loadQuiz("next");
+    navDiv.appendChild(nextBtn);
+  }
+
+  container.appendChild(navDiv);
 }
 
 /* LOVE */
