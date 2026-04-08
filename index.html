@@ -625,21 +625,24 @@ box-shadow:
   overflow:hidden;
   margin:20px auto;
 
-  /* 🌌 NEBULOASĂ STATICĂ */
+  /* 🌌 NEBULOASĂ MAI LUMINOASĂ */
   background:
-    radial-gradient(circle at 25% 30%, rgba(0, 140, 255, 0.35), transparent 55%),
-    radial-gradient(circle at 75% 70%, rgba(255, 0, 180, 0.30), transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(140, 0, 255, 0.25), transparent 65%),
-    radial-gradient(circle at 30% 80%, rgba(0, 255, 200, 0.18), transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(255, 100, 200, 0.15), transparent 60%),
-    radial-gradient(circle at center, #050510, #000000 85%);
+    radial-gradient(circle at 25% 30%, rgba(0, 170, 255, 0.55), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(255, 0, 180, 0.50), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(170, 0, 255, 0.45), transparent 65%),
+    radial-gradient(circle at 30% 80%, rgba(0, 255, 200, 0.30), transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255, 120, 200, 0.25), transparent 60%),
+    radial-gradient(circle at center, #080818, #010104 85%);
 
-  border:1px solid rgba(255,255,255,0.25);
+  border:1px solid rgba(255,255,255,0.3);
   border-radius:25px;
 
   box-shadow:
-    0 15px 35px rgba(0,0,0,0.6),
-    inset 0 0 80px rgba(0,0,0,0.8);
+    0 15px 35px rgba(0,0,0,0.5),
+    inset 0 0 60px rgba(0,0,0,0.6);
+
+  /* 🔥 boost subtil */
+  filter: brightness(1.15) saturate(1.2);
 }
 
   #slideshow{
