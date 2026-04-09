@@ -1047,7 +1047,7 @@ button:hover{
 <div id="musicProgressContainer">
   <div id="musicProgress"></div>
 </div>
-   <audio id="bgMusic" src="muzica.mpeg" loop></audio>
+<audio id="bgMusic" src="muzica.mpeg"></audio>
 
   </div>
 
@@ -1762,15 +1762,28 @@ function nextMusicSlide(){
 
   const image = document.getElementById("slideImage");
   const message = document.getElementById("slideMessage");
+  const music = document.getElementById("bgMusic");
 
-  // Fade out
+  // 🔥 dacă e ultima poză → STOP TOTAL
+  if(musicIndex >= musicSlides.length - 1){
+
+    clearInterval(musicInterval);
+    clearInterval(musicNoteInterval);
+    clearInterval(musicHeartInterval);
+
+    music.pause();
+    music.currentTime = 0;
+
+    return;
+  }
+
+  // fade out
   image.style.opacity = 0;
 
   setTimeout(()=>{
 
-    musicIndex = (musicIndex + 1) % musicSlides.length;
+    musicIndex++;
 
-    // Când imaginea este încărcată, o afișăm
     image.onload = () => {
       image.style.opacity = 1;
     };
@@ -1778,7 +1791,7 @@ function nextMusicSlide(){
     image.src = musicSlides[musicIndex].img;
     message.innerText = musicSlides[musicIndex].text;
 
-  },500); // 🔥 mai mic decât înainte (nu 1s)
+  },500);
 }
 
 function playMusic(){
