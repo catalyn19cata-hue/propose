@@ -1895,12 +1895,13 @@ document.getElementById("effectsLayer").appendChild(note);
 let currentPuzzleImage = puzzleImages[0];
 
 
- function loadCalendar(){
+function loadCalendar(){
 
   const container = document.getElementById("calendarList");
   container.innerHTML = "";
 
   const today = new Date();
+  today.setHours(0,0,0,0); // 🔥 important (comparăm doar data)
 
   specialDates
     .map(item => {
@@ -1917,21 +1918,32 @@ let currentPuzzleImage = puzzleImages[0];
         next.setFullYear(today.getFullYear()+1);
       }
 
+      next.setHours(0,0,0,0);
+
       const diff = Math.ceil((next - today) / 86400000);
 
       return {...item, diff, next, eventDate};
 
     })
-    .sort((a,b)=>a.diff-b.diff)
+    .sort((a,b)=>{
+      // 🔥 dacă e azi → mereu primul
+      if(a.diff === 0) return -1;
+      if(b.diff === 0) return 1;
+      return a.diff - b.diff;
+    })
     .forEach(item =>{
 
       const div = document.createElement("div");
       div.className = "calendar-item";
 
+      let textZi = item.diff === 0
+        ? "🔥 Astăzi!"
+        : `⏳ În ${item.diff} zile`;
+
       div.innerHTML = `
         <strong>${item.text}</strong><br>
         📅 ${item.eventDate.toLocaleDateString()}<br>
-        ⏳ În ${item.diff} zile
+        ${textZi}
       `;
 
       container.appendChild(div);
