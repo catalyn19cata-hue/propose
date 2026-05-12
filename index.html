@@ -9,6 +9,7 @@
 <style>
 
 
+  
 #musicProgressContainer{
   width:100%;
   height:8px;
@@ -905,6 +906,7 @@ button:hover{
 <button onclick="showSection('daily')">✉️ Mesajul zilei</button>
 <button onclick="showSection('calendar')">📆 Calendar</button>
 <button onclick="showSection('letter')">💌 Citește când îți este dor</button>
+<button onclick="showSection('proposal')">💍 Cerere</button>
 <button onclick="showSection('music')">🎶 Muzică</button>
 <button onclick="showSection('balloons')">🌌 Printre stele</button>
 <button onclick="showSection('puzzle')">🧩 Puzzle</button>
@@ -2364,7 +2366,108 @@ container.addEventListener("click", (e) => {
   music.currentTime = percent * music.duration;
 
 });
-  
+  function openProposal(){
+
+  document.getElementById("proposalBox").style.display = "block";
+
+  typeProposalText(
+`Din prima clipă în care ai apărut în viața mea,
+ai transformat totul în ceva mai frumos... 💖
+
+Mi-ai devenit liniște,
+acasă,
+fericire
+și omul fără de care nu îmi mai imaginez viitorul. ✨
+
+Vreau să râdem împreună,
+să visăm împreună,
+să îmbătrânim împreună
+și să construim o viață doar a noastră. 💞
+
+Așa că am o singură întrebare... 🥹
+
+Vrei să fii soția mea? 💍`,
+document.getElementById("proposalText"),
+() => {
+  document.getElementById("proposalButtons").style.display = "flex";
+});
+
+}
+
+function typeProposalText(text, element, callback){
+
+  element.innerHTML = "";
+
+  let i = 0;
+
+  function typing(){
+
+    if(i < text.length){
+
+      element.innerHTML += text.charAt(i);
+      i++;
+
+      setTimeout(typing, 35);
+
+    } else {
+
+      if(callback) callback();
+
+    }
+  }
+
+  typing();
+}
+
+function proposalYes(){
+
+  showPopup("💍💖😘");
+
+  document.getElementById("proposalText").innerHTML = `
+    Pentru totdeauna noi doi! 💞<br><br>
+    Te iubesc infinit! 💖
+  `;
+
+  createProposalHearts();
+}
+
+function moveNoButton(){
+
+  const btn = document.getElementById("noBtn");
+
+  btn.style.position = "absolute";
+
+  btn.style.left = Math.random() * 200 - 100 + "px";
+  btn.style.top = Math.random() * 100 - 50 + "px";
+}
+
+function createProposalHearts(){
+
+  for(let i=0;i<40;i++){
+
+    setTimeout(()=>{
+
+      const heart = document.createElement("div");
+
+      heart.classList.add("heart");
+
+      heart.innerText = ["💖","💘","💞","💕"][Math.floor(Math.random()*4)];
+
+      heart.style.left = Math.random()*100 + "vw";
+
+      heart.style.fontSize = (20 + Math.random()*25) + "px";
+
+      heart.style.animationDuration =
+        (4 + Math.random()*3) + "s";
+
+      document.getElementById("effectsLayer")
+        .appendChild(heart);
+
+      setTimeout(()=>heart.remove(),7000);
+
+    }, i * 120);
+  }
+}
 </script>
 </body>
 </html>
