@@ -1071,6 +1071,58 @@ button:hover{
   <button class="back" onclick="goBack()">⬅ Back</button>
 </div>
 
+<!-- CERERE ÎN CĂSĂTORIE -->
+<div id="proposal" class="section">
+
+  <div class="glass-box">
+
+    <h2 style="
+      font-family:'Dancing Script', cursive;
+      font-size:42px;
+      margin-bottom:20px;
+      color:white;
+      text-shadow:
+        0 0 10px #ff4dc4,
+        0 0 20px #ff1fae,
+        0 0 40px #ff0099;
+    ">
+      💍 Pentru totdeauna?
+    </h2>
+
+    <div class="proposal-ring" onclick="openProposal()">
+      💎
+    </div>
+
+    <div id="proposalBox" style="display:none;">
+
+      <img src="roma24.jpeg"
+           class="proposal-photo">
+
+      <div class="proposal-text" id="proposalText"></div>
+
+      <div id="proposalButtons"
+           style="display:none; margin-top:25px; gap:15px; justify-content:center;">
+
+        <button onclick="proposalYes()">
+          💖 DA
+        </button>
+
+        <button id="noBtn"
+                onmouseover="moveNoButton()"
+                ontouchstart="moveNoButton()">
+          😅 Nu
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="back" onclick="goBack()">⬅ Back</button>
+
+</div>
+    
 <div id="effectsLayer"></div>
     
 <script>
